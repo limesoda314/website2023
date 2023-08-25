@@ -33,17 +33,24 @@ export default function Layout() {
                            {testMenuItems.map(({ href, title }) => (
                                <li className='m-2' key={title}>
                                    <NavLink to={href} >
-                                       <p className={'text-white'}>{title}</p>
+                                       <p className={'hover:bg-lime-300 text-white'}>{title}</p>
                                    </NavLink>
                                </li>
                            ))}
                        </ul>
                    </nav>
-               </aside>
+               </aside> 
                <main className={'flex-1'}>
                    <Outlet />
                </main>
+               
+               
            </div>
+           <footer className={"bg-lime-600 text-white flex inset-x-0 bottom-0 h-16 "}>
+                <p>
+                    Ann Miyaguchi 
+                </p>
+            </footer>
        </div>
    );
 }

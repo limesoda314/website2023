@@ -1,7 +1,7 @@
 function Gallery() {
     return (
     <div>
-
+        <title>Gallery</title>
         <p> Gallery </p>
 
 
