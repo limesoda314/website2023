@@ -23,7 +23,7 @@ export default function Layout() {
 
    return (
        <div className='min-h-screen flex flex-col'>
-           <header className='bg-lime-600 text-white sticky top-0 h-14 flex justify-center items-center font-semibold uppercase'>
+           <header className='bg-lime-600 text-white sticky top-0 h-14 flex justify-center items-center text-2xl font-semibold uppercase'>
                Ann Miyaguchi
            </header>
            <div className='flex flex-col md:flex-row flex-1'>
@@ -33,7 +33,7 @@ export default function Layout() {
                            {testMenuItems.map(({ href, title }) => (
                                <li className='m-2' key={title}>
                                    <NavLink to={href} >
-                                       <p className={'hover:bg-lime-300 text-white'}>{title}</p>
+                                       <p className={'hover:bg-lime-300 text-xl text-white'}>{title}</p>
                                    </NavLink>
                                </li>
                            ))}
@@ -43,7 +43,6 @@ export default function Layout() {
                <main className={'flex-1'}>
                    <Outlet />
                </main>
-               
                
            </div>
            <footer className={"bg-lime-600 text-white flex inset-x-0 bottom-0 h-16 "}>

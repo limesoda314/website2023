@@ -10,7 +10,8 @@ function Home() {
             <div className="flex flex-col space-y-8">
                 <h1 className='text-5xl font-bold underline'>Home</h1>
                 <div className="px-8 text-left box-content box-border">
-                    Hello! I'm Ann, a soon to be masters student at UCR. I just graduated with my bachelor's this spring so over the summer I'm planning to work on this website. Hopefully before the end of summer 
+                    Hello! I'm Ann, a soon to be masters student at UCR. I just graduated with my bachelor's this spring so over the summer I'm planning to work on this website. 
+                    Hopefully before the end of summer you'll get to see something cool
                 </div>
             </div>
 
