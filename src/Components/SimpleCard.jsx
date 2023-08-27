@@ -1,5 +1,7 @@
 // card taken from material tailwind 
 // https://www.material-tailwind.com/docs/react/card
+// use .jsx extension next time instead of converting it to work with .js
+
 import { NavLink} from "react-router-dom";
 import {
     Card,
@@ -12,7 +14,6 @@ import {
     return (
       <Card className="mt-6 w-96 rounded-lg shadow-lg p-6 m-2">
         <CardBody>
-          {/* variant="h5" color="blue-gray" className="mb-2" */}
           <Typography className="font-bold text-2xl text-gray-900 h-32"> 
             {props.title}
           </Typography>

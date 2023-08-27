@@ -23,7 +23,7 @@ export default function Layout() {
 
    return (
        <div className='min-h-screen flex flex-col'>
-           <header className='bg-lime-600 text-white sticky top-0 h-14 flex justify-center items-center text-2xl font-semibold uppercase'>
+           <header className='z-50 bg-lime-600 text-white sticky top-0 h-14 flex justify-center items-center text-2xl font-semibold uppercase'>
                Ann Miyaguchi
            </header>
            <div className='flex flex-col md:flex-row flex-1'>

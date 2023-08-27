@@ -1,4 +1,5 @@
 
+import { Typography } from '@material-tailwind/react';
 import SimpleCard from '../SimpleCard';
 
 export default function Projects() {
@@ -25,15 +26,22 @@ export default function Projects() {
              description: 'This project ...',
         },
     ];
+
+    document.title = 'Projects';
     return (
-        <div>
-        <title>Projects</title>
+        
 
         <div className="flex flex-col">
-            <h1 className='text-5xl font-bold underline'>Projects</h1>
-            <div>
-                Below are a few of the projects that I've completed :) 
+            <div className="m-8 h-full shadow-lg">
+            <Typography variant="h1"> 
+                Projects
+            </Typography>
+            <Typography className="m-8">
+            Below are a few of the projects that I've completed :) 
+            </Typography>
             </div>
+            
+            
             <div className="flex flex-row flex-wrap justify-center text-center p-3">
                     {testProjectItems.map(({ href, description, title }) => (
                         <SimpleCard  title={title} description={description} href={href} />
@@ -42,7 +50,6 @@ export default function Projects() {
                 
         </div>
 
-    </div>
     );
  
 };
