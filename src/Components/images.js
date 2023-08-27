@@ -11,7 +11,7 @@ import img10 from './../images/img10.jpg';
 import img11 from './../images/img11.jpg'; 
 
 
-export default  {
+const images = {
     'img1':img1,
     'img2':img2,
     'img3':img3,
@@ -24,3 +24,4 @@ export default  {
     'img10':img10,
     'img11':img11,
 };
+export default images;
