@@ -21,7 +21,7 @@ export default function Gallery() {
         
         <div className="flex flex-col flex-wrap justify-center text-center h-min">
             {images.map(({ title, href, description, alt, date}) => (
-                <GalleryCard title={title} description={description} href={href} alt={alt} date={date}/>
+                <GalleryCard title={title} href={href} description={description}  alt={alt} date={date}/>
             ))}
         </div>
 

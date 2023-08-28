@@ -15,7 +15,15 @@ export default function SimpleCard(props) {
     const tagList = [];
   
     props.tags.forEach((tag) => {
-      tagList.push(<button className="hover:bg-green-500 bg-green-300 text-green-950 rounded-md m-2 px-2 py-1">#{tag}</button>);
+      if (props.tagMap.get(tag) === 1 || props.tagMap.get(tag) === true) {  
+
+        tagList.push(<button className="bg-green-300 text-green-950 rounded-md m-2 px-2 py-1">#{tag}</button>);
+     
+      } else if (props.tagMap.get(tag) === 0 || props.tagMap.get(tag) === false){
+        tagList.push(<button className="bg-red-500 text-green-950 rounded-md m-2 px-2 py-1">#{tag}</button>);
+      } else {
+        tagList.push(<button className="bg-slate-300 text-green-950 rounded-md m-2 px-2 py-1">#{tag}</button>);
+      }
   
     });
   
@@ -43,7 +51,7 @@ export default function SimpleCard(props) {
       </CardBody>
       <CardFooter className="pt-0">
           <NavLink to={props.href} >
-          <button className="bg-slate-800 text-white hover:bg-lime-400 rounded-lg shadow-md py-2 px-5">Read More</button>
+          <button className="bg-slate-800 text-white hover:bg-green-500 rounded-lg shadow-md py-2 px-5">Read More</button>
           </NavLink>
         
       </CardFooter>
