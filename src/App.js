@@ -10,7 +10,6 @@ import NoPage from "./Components/Pages/NoPage";
 import ProjectPages from './Components/Imports/Pages/ProjectPages'
 import BlogPages from './Components/Imports/Pages/BlogPages'; 
 
-
 function App() {
  return (
    <div className="App">
@@ -31,6 +30,7 @@ function App() {
             <Route path="blog/post1" element={<BlogPages.Post1/>} />       
             <Route path="blog/post2" element={<BlogPages.Post2/>} />
             <Route path="blog/post3" element={<BlogPages.Post3/>} />
+
         </Route>    
         </Routes>     
     </BrowserRouter>  

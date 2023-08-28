@@ -9,14 +9,33 @@ import {
 import { NavLink} from "react-router-dom";
  
 export default function SimpleCard(props) {
+  
+  function formatTags() {
+
+    const tagList = [];
+  
+    props.tags.forEach((tag) => {
+      tagList.push(<button className="hover:bg-green-500 bg-green-300 text-green-950 rounded-md m-2 px-2 py-1">#{tag}</button>);
+  
+    });
+  
+    return tagList;
+  
+  };
+
+
   return (
-    <Card className="mt-6 w-96 shadow-lg">
+    <Card className="m-4 md:mt-6 md:left-1/4 left-0 w-[calc(100%-2rem)] md:w-1/2 shadow-lg">
       <CardBody>
         <Typography variant="h5" color="blue-gray" className="mb-2">
           {props.title}
         </Typography>
         <Typography>
           {props.author} • {props.date}
+          
+        </Typography>
+        <Typography>
+          {formatTags()}
         </Typography>
         <Typography>
           {props.description}
