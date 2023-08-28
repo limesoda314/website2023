@@ -1,36 +1,58 @@
-
+import { useState } from 'react';
 import {Typography} from "@material-tailwind/react";
 import BlogInfo from "../Imports/Info/BlogInfo"; 
 import BlogCard from "../Cards/BlogCard";
 
 
 function Blog() {
-    let tagList = ["Tag1", "Tag2", "Tag3", "Tag4"]; 
-    let selectedTags = tagList;
-
-    function selectTags(tag) {
-        // if tag is not found 
-        if (selectedTags.find((item) => item === tag) ) {
-            selectedTags.push(tag); 
-        } else {
-            // remove tag if found 
-            selectedTags = selectedTags.filter((item) => item !== tag); 
-        }
-        return; 
-    }
+    // use react states 
+    const [tagMap, setTagMap] = useState(new Map([
+        ["tag1", 1],
+        ["tag2", 1],
+        ["tag3", 1],
+        ["tag4", 1]
+    ]));
+    
+    var tagList = ["tag1",  "tag2", "tag3", "tag4"]; 
+    
 
     function formatTags() {
 
         const newTagList = [];
-      
+        let tagClass; 
+        
         tagList.forEach((tag) => {
-          newTagList.push(<button onClick={selectTags(tag)} className="hover:bg-green-500 bg-green-300 text-green-950 rounded-md m-2 px-2 py-1">#{tag}</button>);
+            (tagMap.get(tag) === 1 || tagMap.get(tag) === true) ? tagClass = "bg-green-300 hover:bg-green-500 text-green-950 rounded-md m-2 px-2 py-1 " : tagClass = "bg-cyan-400 hover:bg-green-500 text-green-950 rounded-md m-2 px-2 py-1" ; 
+            newTagList.push(<button className={tagClass} 
+                onClick={
+                    () => { 
+                        console.log("selectTags:", tag, tagMap.get(tag)); 
+                        setTagMap(new Map(tagMap.set(tag, !(tagMap.get(tag))))); 
+                        console.log("after setting:", tag, tagMap.get(tag));
+                    } 
+                } 
+            >#{tag}</button>);
       
         });
       
         return newTagList;
       
     };
+
+    function isSelected(tags) {
+        for (let i = 0; i < tags.length; i++) {
+            
+            
+            // console.log("isSelected:",tags[i], tagMap.get(tags[i])); 
+            if (tagMap.get(tags[i]) === 1) {
+                
+                return 1; 
+            }
+        }
+        return 1; 
+
+    }
+
 
     document.title = "Ann's Blog";
     return (
@@ -56,15 +78,17 @@ function Blog() {
             </div>
 
             <div className="flex flex-col flex-wrap h-min text-left">
-
                 {BlogInfo.map(({ title, author, date, tags, description, href}) => (
-                    <BlogCard title={title} author={author} date={date} tags={tags} description={description} href={href} />
+                    <div>
+                        { isSelected(tags) ? <div>  <BlogCard title={title} author={author} date={date} tags={tags} description={description} href={href} /> </div> : <div>not selected</div>}
+                    </div>
+                     
                 ))}
             </div> 
 
             
 
-
+1
         
         </div>
     )
