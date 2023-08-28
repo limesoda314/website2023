@@ -6,10 +6,9 @@ import Gallery from "./Components/Pages/Gallery";
 import Blog from "./Components/Pages/Blog"; 
 import Layout from "./Components/Pages/Layout"; 
 import NoPage from "./Components/Pages/NoPage"; 
-import Alphanumeric from './Components/Projects/alphanumeric';
-import Poster from  './Components/Projects/dspathposter';
-import ForwardBackwards from './Components/Projects/forwardbackward';
-import NearestNeighbor from './Components/Projects/nearestneighbor';
+
+import ProjectPages from './Components/Imports/Pages/ProjectPages'
+import BlogPages from './Components/Imports/Pages/BlogPages'; 
 
 
 function App() {
@@ -17,19 +16,22 @@ function App() {
    <div className="App">
     <BrowserRouter>       
         <Routes>         
-        <Route element={<Layout />}>           
-            <Route path="/" element={<Home />} />           
-            <Route path="projects" element={<Projects />} />           
-            <Route path="gallery" element={<Gallery />} />   
-            <Route path="blog" element={<Blog />} />  
-            <Route path="*" element={<NoPage />} />
+        <Route element={<Layout/>}>           
+            <Route path="/" element={<Home/>} />           
+            <Route path="projects" element={<Projects/>} />           
+            <Route path="gallery" element={<Gallery/>} />   
+            <Route path="blog" element={<Blog/>} />  
+            <Route path="*" element={<NoPage/>} />
 
-            <Route path="projects/alphanumeric-handwriting-detector" element={<Alphanumeric />} />           
-            <Route path="projects/dspath-ucr-monet-poster" element={<Poster/>} />   
-            <Route path="projects/cpp-forward-selection-and-backwards-elimination-implementation" element={<ForwardBackwards />} />  
-            <Route path="projects/cpp-nearest-neighbor-implementation" element={<NearestNeighbor />} />  
+            <Route path="projects/alphanumeric-handwriting-detector" element={<ProjectPages.Alphanumeric/>} />           
+            <Route path="projects/dspath-ucr-monet-poster" element={<ProjectPages.Poster/>} />   
+            <Route path="projects/cpp-forward-selection-and-backwards-elimination-implementation" element={<ProjectPages.ForwardBackwards/>} />  
+            <Route path="projects/cpp-nearest-neighbor-implementation" element={<ProjectPages.NearestNeighbor/>} />  
+ 
+            <Route path="blog/post1" element={<BlogPages.Post1/>} />       
+            <Route path="blog/post2" element={<BlogPages.Post2/>} />
+            <Route path="blog/post3" element={<BlogPages.Post3/>} />
         </Route>    
-
         </Routes>     
     </BrowserRouter>  
     
