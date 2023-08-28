@@ -14,6 +14,7 @@ function Blog() {
     ]));
     
     var tagList = ["tag1",  "tag2", "tag3", "tag4"]; 
+
     
 
     function formatTags() {
@@ -22,13 +23,13 @@ function Blog() {
         let tagClass; 
         
         tagList.forEach((tag) => {
-            (tagMap.get(tag) === 1 || tagMap.get(tag) === true) ? tagClass = "bg-green-300 hover:bg-green-500 text-green-950 rounded-md m-2 px-2 py-1 " : tagClass = "bg-cyan-400 hover:bg-green-500 text-green-950 rounded-md m-2 px-2 py-1" ; 
+            (tagMap.get(tag) === 1 || tagMap.get(tag) === true) ? tagClass = "bg-green-300 hover:bg-green-500 text-green-950 rounded-md m-2 px-2 py-1 " : tagClass = "bg-red-400 hover:bg-green-500 text-green-950 rounded-md m-2 px-2 py-1" ; 
             newTagList.push(<button className={tagClass} 
                 onClick={
                     () => { 
-                        console.log("selectTags:", tag, tagMap.get(tag)); 
                         setTagMap(new Map(tagMap.set(tag, !(tagMap.get(tag))))); 
-                        console.log("after setting:", tag, tagMap.get(tag));
+
+                        
                     } 
                 } 
             >#{tag}</button>);
@@ -42,14 +43,12 @@ function Blog() {
     function isSelected(tags) {
         for (let i = 0; i < tags.length; i++) {
             
-            
-            // console.log("isSelected:",tags[i], tagMap.get(tags[i])); 
-            if (tagMap.get(tags[i]) === 1) {
-                
-                return 1; 
+            console.log("isSelected:",tags[i], tagMap.get(tags[i])); 
+            if (tagMap.get(tags[i]) === 1 || tagMap.get(tags[i]) === true) {
+                return true; 
             }
         }
-        return 1; 
+        return false; 
 
     }
 
@@ -76,15 +75,17 @@ function Blog() {
                 
 
             </div>
-
             <div className="flex flex-col flex-wrap h-min text-left">
                 {BlogInfo.map(({ title, author, date, tags, description, href}) => (
                     <div>
-                        { isSelected(tags) ? <div>  <BlogCard title={title} author={author} date={date} tags={tags} description={description} href={href} /> </div> : <div>not selected</div>}
+                        {console.log("update")}
+                        { (isSelected(tags) === true || isSelected(tags) === 1) ? <div>  <BlogCard title={title} author={author} date={date} tags={tags} description={description} href={href} /> </div> : <div></div>}
                     </div>
-                     
+                    
                 ))}
             </div> 
+
+            
 
             
 
