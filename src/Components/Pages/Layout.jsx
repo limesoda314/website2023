@@ -27,13 +27,13 @@ export default function Layout() {
                Ann Miyaguchi
            </header>
            <div className='flex flex-col md:flex-row flex-1'>
-               <aside className='bg-lime-500 w-full md:w-60'>
+               <aside className='w-full h-min md:h-screen sticky z-20 inset-x-0 top-1 md:w-60 pt-12 bg-lime-500'>
                    <nav>
-                       <ul>
+                       <ul >
                            {testMenuItems.map(({ href, title }) => (
                                <li className='m-2' key={title}>
                                    <NavLink to={href} >
-                                       <p className={' hover:bg-lime-300 text-xl text-white'}>{title}</p>
+                                       <p className={'hover:bg-lime-300 text-xl text-white '}>{title}</p>
                                    </NavLink>
                                </li>
                            ))}
