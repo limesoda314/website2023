@@ -2,11 +2,18 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
-   "./public/index.html",
+    "./public/index.html",
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  corePlugins: {
+    aspectRatio: false,
+  },
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+            
+  ],
 }
 
