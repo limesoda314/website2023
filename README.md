@@ -29,3 +29,7 @@ Goal: I want a website where I can link personal projects, accomplishments, and 
 Tutorials I somewhat followed:
 * [for routing](https://dev.to/rebeccapeltz/react-18-react-router-v6-sidebar-navigation-and-a-sandpack-component-5c02)
 * [sandpack](https://sandpack.codesandbox.io/docs/advanced-usage/components)
+
+
+Issues that I encountered and fixed:
+* Netlify react router was not working when you refreshed the page. To fix this I added in the file `_redirets` with the line `/* /index.html 200` as instructed [here](https://blog.arnabghosh.me/netlify-react-router-not-working)

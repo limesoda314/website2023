@@ -70,7 +70,7 @@ function Blog() {
 
             // include 
             if (tagMap.get(tag) === 1 || tagMap.get(tag) === true) {
-                tagClass = "bg-green-300 hover:bg-red-500 text-green-950 rounded-md m-2 px-2 py-1 ";
+                tagClass = "bg-green-300 hover:bg-red-500 text-black rounded-md m-2 px-2 py-1 ";
                 newTagList.push(<button className={tagClass} 
                     onClick={
                         () => { 
@@ -83,7 +83,7 @@ function Blog() {
             }
             // exclude  
             else if (tagMap.get(tag) === 0 || tagMap.get(tag) === false) {
-                tagClass = "bg-red-400 hover:bg-slate-500 text-green-950 rounded-md m-2 px-2 py-1";
+                tagClass = "bg-red-400 hover:bg-slate-500 text-black rounded-md m-2 px-2 py-1";
                 newTagList.push(<button className={tagClass} 
                     onClick={
                         () => { setTagMap(new Map(tagMap.set(tag, -1))); } 
@@ -92,7 +92,7 @@ function Blog() {
             } 
             // default 
             else {
-                tagClass = "bg-slate-400 hover:bg-green-500 text-green-950 rounded-md m-2 px-2 py-1";
+                tagClass = "bg-slate-400 hover:bg-green-500 text-black rounded-md m-2 px-2 py-1";
                 newTagList.push(<button className={tagClass} 
                     onClick={
                         () => { 
@@ -195,7 +195,7 @@ function Blog() {
 
     function sortingBar() {
         return (
-            <div className="relative inline-block m-4">
+            <div className="relative inline-block m-4 mb-0">
                 <div>
                     <button type="button" onClick={
                             () => { 
@@ -343,35 +343,30 @@ function Blog() {
                     
 
                 </Typography>
-                <Typography>
-
                 
-
-                    <div className="flex justify-end">
-                    {sortingBar()}
-                    </div>
-                    <Typography className="flex flex-row justify-center">
-                        <div>
-                        Select Categories: {formatTags()}
-                        </div>
-                        
-                    </Typography>
-
-                </Typography>
-                
-                
-
             </div>
-            <div className="flex flex-col flex-wrap h-min text-left">
+
+            
+            <Typography className="relative w-full h-min sticky z-10 inset-x-0 top-14 bg-lime-600">
+
+                <div className="flex justify-end pt-10">
+                {sortingBar()}
+                </div>
+                <Typography className="flex flex-row justify-center">
+                    <div className="text-white">
+                    Select Categories: {formatTags()}
+                    </div>
+                    
+                </Typography>
+
+            </Typography>
+            
+            <div className="flex flex-col flex-wrap h-full text-left">
                 {formatPosts()}
             
             </div> 
 
             
-
-            
-
-1
         
         </div>
     )
