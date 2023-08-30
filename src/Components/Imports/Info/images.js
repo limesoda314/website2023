@@ -13,6 +13,7 @@ import img11 from './../../images/img11.jpg';
 
 const images = [
     {
+        id: 0,
         href: img1, 
         alt: 'orange tabby cat',
         date: '7-30-2023',
@@ -20,6 +21,7 @@ const images = [
         description: 'Mango close up',
     },
     {
+        id: 1,
         href: img2,
         alt: 'orange tabby cat',
         date: '7-30-2023',
@@ -27,6 +29,7 @@ const images = [
         description: "Mango's face",
     },
     {
+        id: 2,
         href: img3,
         alt: 'orange tabby cat',
         date: '7-30-2023',
@@ -34,6 +37,7 @@ const images = [
         description: 'Mango outside',
     },
     {
+        id: 3,
         href:img4,
         alt: 'siamese tabby cat',
         date: '7-21-2023',
@@ -41,6 +45,7 @@ const images = [
         description: 'Koori under the avocado tree',        
     },
     {
+        id: 4,
         href:img5,
         alt: 'orange tabby cat',
         date: '7-21-2023',
@@ -48,6 +53,7 @@ const images = [
         description: "Mango by the lemon tree",
     },
     {
+        id: 5,
         href:img6,
         alt: 'orange tabby cat',
         date: '7-21-2023',
@@ -55,6 +61,7 @@ const images = [
         description: 'Mango laying in the shade',
     },
     {
+        id: 6,
         href: img7,
         alt: 'orange tabby cat',
         date: '7-21-2023',
@@ -62,6 +69,7 @@ const images = [
         description: 'Mango laying on brick',
     },
     {
+        id: 7,
         href: img8,
         alt: 'orange tabby cat and siamese tabby cat',
         date: '7-21-2023',
@@ -69,6 +77,7 @@ const images = [
         description: "Koori and Mango looking at each other through the window",
     },
     {
+        id: 8,
         href:img9,
         alt: 'siamese tabby cat',
         date: '7-20-2023',
@@ -76,6 +85,7 @@ const images = [
         description: 'Koori in car',
     },
     {
+        id: 9,
         href: img10,
         alt: 'orange tabby cat and siamese tabby cat',
         date: '6-16-2023',
@@ -83,6 +93,7 @@ const images = [
         description: 'mango and koori on window sill perch',
     },
     {
+        id: 10,
         href: img11,
         alt: 'siamese tabby cat',
         date: '8-6-2023',

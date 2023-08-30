@@ -33,7 +33,7 @@ export default function SimpleCard(props) {
 
 
   return (
-    <Card className="m-4 md:mt-6 md:left-1/4 left-0 w-[calc(100%-2rem)] md:w-1/2 shadow-lg">
+    <Card key={props.id} className="m-4 md:mt-6 md:left-1/4 left-0 w-[calc(100%-2rem)] md:w-1/2 shadow-lg">
       <CardBody>
         <Typography variant="h5" color="blue-gray" className="mb-2">
           {props.title}

@@ -20,8 +20,8 @@ export default function Projects() {
             
             
             <div className="flex flex-row flex-wrap justify-center text-center p-3">
-                    {ProjectInfo.map(({ href, description, title }) => (
-                        <SimpleCard  title={title} description={description} href={href} />
+                    {ProjectInfo.map(({ href, description, title, id}) => (
+                        <SimpleCard key={id} title={title} description={description} href={href} />
                     ))}
             </div>
                 

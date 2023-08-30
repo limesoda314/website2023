@@ -22,15 +22,14 @@ function App() {
             <Route path="gallery" element={<Gallery/>} />   
             <Route path="blog" element={<Blog/>} />  
             <Route path="*" element={<NoPage/>} />
+            
 
-            <Route path="projects/alphanumeric-handwriting-detector" element={<ProjectPages.Alphanumeric/>} />           
-            <Route path="projects/dspath-ucr-monet-poster" element={<ProjectPages.Poster/>} />   
-            <Route path="projects/cpp-forward-selection-and-backwards-elimination-implementation" element={<ProjectPages.ForwardBackwards/>} />  
-            <Route path="projects/cpp-nearest-neighbor-implementation" element={<ProjectPages.NearestNeighbor/>} />  
- 
-            <Route path="blog/post1" element={<BlogPages.Post1/>} />       
-            <Route path="blog/post2" element={<BlogPages.Post2/>} />
-            <Route path="blog/post3" element={<BlogPages.Post3/>} />
+            {ProjectPages.map(({ page, href, id}) => (
+                <Route key={id} path={href} element={page} />    
+            ))}
+            {BlogPages.map(({ page, href, id}) => (
+                <Route key={id} path={href} element={page} />    
+            ))}
 
         </Route>    
         </Routes>     

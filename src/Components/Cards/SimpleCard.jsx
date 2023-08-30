@@ -1,6 +1,7 @@
 // card taken from material tailwind 
 // https://www.material-tailwind.com/docs/react/card
 // use .jsx extension next time instead of converting it to work with .js
+// Used for project cards 
 
 import { NavLink} from "react-router-dom";
 import {
@@ -12,7 +13,7 @@ import {
    
   export default function SimpleCard(props) {
     return (
-      <Card className="mt-6 w-96 rounded-lg shadow-lg p-6 m-2">
+      <Card key={props.id} className="mt-6 w-96 rounded-lg shadow-lg p-6 m-2">
         <CardBody>
           <Typography className="font-bold text-2xl text-gray-900 h-32"> 
             {props.title}

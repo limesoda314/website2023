@@ -1,4 +1,5 @@
 // image code from: https://www.material-tailwind.com/docs/react/img
+// used in the gallery 
 import { Typography } from "@material-tailwind/react";
  
 export default function ImgWithBlurredCaption(props) {
