@@ -1,6 +1,6 @@
 import Post1 from "../../Blog/post1";
-import Post2 from "../../Blog/post1";
-import Post3 from "../../Blog/post1";
+import Post2 from "../../Blog/post2";
+import Post3 from "../../Blog/post3";
 
 const BlogPages = [
     {   

@@ -33,11 +33,11 @@ export default function Post1() {
         </Typography>
         <Typography variant="h2" color="blue-gray">
             {postData[0].author} • {postData[0].date} 
-
             <div>
                 {formatTags()}
             </div>
         </Typography>
+        
         <article className="container mx-auto object-center shadow-lg p-5 m-10 text-left prose prose-lg ">
             <Typography>
                 <p>

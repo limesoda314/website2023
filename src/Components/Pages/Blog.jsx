@@ -22,9 +22,14 @@ function Blog() {
     const [showMore, setShowMore] = useState([0, "Show More"]); 
     const [showOptions, setShowOptions] = useState(0); 
     const [sortedBy, setSortedBy] = useState(-1);
-    
-    
 
+    /*
+    key={post.slug}
+    title={post.data.title}
+    date={post.data.date}
+    description={post.data.description}
+    slug={post.slug}
+    */
 
     document.title = "Ann's Blog";
     return (

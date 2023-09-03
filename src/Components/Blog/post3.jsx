@@ -1,8 +1,12 @@
-export default function Post1() {
-    document.title = 'Post1';
+
+export default function Post3() {
+    document.title = 'Post3';
+
+    
     return (
     <div>
-        <title>Post1</title>
         <p>post content</p>
+        {/* {content} */}
+ 
     </div>); 
 };

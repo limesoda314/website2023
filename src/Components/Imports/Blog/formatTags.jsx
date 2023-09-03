@@ -30,7 +30,7 @@ export default function FormatTags(props) {
         } 
         // default 
         else {
-            tagClass = "bg-slate-400 hover:bg-green-500 text-black rounded-md m-2 px-2 py-1";
+            tagClass = "bg-slate-300 hover:bg-green-500 text-black rounded-md m-2 px-2 py-1";
             newTagList.push(<button className={tagClass} 
                 onClick={
                     () => { 

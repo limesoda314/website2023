@@ -29,6 +29,14 @@ Goal: I want a website where I can link personal projects, accomplishments, and 
 Tutorials I somewhat followed:
 * [for routing](https://dev.to/rebeccapeltz/react-18-react-router-v6-sidebar-navigation-and-a-sandpack-component-5c02)
 * [sandpack](https://sandpack.codesandbox.io/docs/advanced-usage/components)
+* [Remark to Html](https://blog.logrocket.com/how-to-safely-render-markdown-using-react-markdown/)
+
+Links
+* [tailwindcss](https://tailwindcss.com/)
+* [material tailwind](https://www.material-tailwind.com/)
+* [react-markdown github](https://github.com/remarkjs/react-markdown)
+* [tailwindcss headlessui](https://headlessui.com/react/listbox)
+* [heroicons](https://headlessui.com/react/listbox)
 
 
 Issues that I encountered and fixed:
