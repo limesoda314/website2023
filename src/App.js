@@ -10,8 +10,13 @@ import NoPage from "./Components/Pages/NoPage";
 import ProjectInfo from './Components/Imports/Info/ProjectInfo';
 import BlogInfo from './Components/Imports/Info/BlogInfo'; 
 
+import Post from './Components/posts/post';
 
 function App() {
+    let postRoutes = [];
+    for (let i = 0; i < BlogInfo.length; i++) {
+        postRoutes.push(<Route key={BlogInfo[i].id} path={"blog/"+BlogInfo[i].href} element={<Post markdown={BlogInfo[i].content} postData={BlogInfo[i]}/>} /> ); 
+    }
  return (
    <div className="App">
     <BrowserRouter>       
@@ -27,9 +32,7 @@ function App() {
             {ProjectInfo.map(({ page, href, id}) => (
                 <Route key={id} path={"projects/"+href} element={page} />    
             ))}
-            {BlogInfo.map(({ page, href, id}) => (
-                <Route key={id} path={"blog/"+href} element={page} />    
-            ))}
+            { postRoutes }
 
         </Route>    
         </Routes>     
