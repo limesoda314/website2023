@@ -19,6 +19,8 @@ Idk, this should be fine
 
 
 
+@blog
+
 > This is a Block quote 
 
 Latex math rendering

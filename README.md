@@ -37,6 +37,7 @@ Links
 * [react-markdown github](https://github.com/remarkjs/react-markdown)
 * [tailwindcss headlessui](https://headlessui.com/react/listbox)
 * [heroicons](https://headlessui.com/react/listbox)
+* [remark mentions](https://github.com/FinnRG/remark-mentions)
 
 
 Issues that I encountered and fixed:

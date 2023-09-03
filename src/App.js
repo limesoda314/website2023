@@ -7,8 +7,8 @@ import Blog from "./Components/Pages/Blog";
 import Layout from "./Components/Pages/Layout"; 
 import NoPage from "./Components/Pages/NoPage"; 
 
-import ProjectPages from './Components/Imports/Pages/ProjectPages'
-import BlogPages from './Components/Imports/Pages/BlogPages'; 
+import ProjectInfo from './Components/Imports/Info/ProjectInfo';
+import BlogInfo from './Components/Imports/Info/BlogInfo'; 
 
 
 function App() {
@@ -24,12 +24,11 @@ function App() {
             <Route path="blog" element={<Blog/>} />  
             <Route path="*" element={<NoPage/>} />
             
-
-            {ProjectPages.map(({ page, href, id}) => (
-                <Route key={id} path={href} element={page} />    
+            {ProjectInfo.map(({ page, href, id}) => (
+                <Route key={id} path={"projects/"+href} element={page} />    
             ))}
-            {BlogPages.map(({ page, href, id}) => (
-                <Route key={id} path={href} element={page} />    
+            {BlogInfo.map(({ page, href, id}) => (
+                <Route key={id} path={"blog/"+href} element={page} />    
             ))}
 
         </Route>    
