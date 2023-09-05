@@ -3,6 +3,8 @@ import gfm from 'remark-gfm';
 import remarkMentions from 'remark-mentions';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import rehypeInline from "rehype-inline";
+import rehypeRaw from "rehype-raw"; 
 import 'katex/dist/katex.min.css';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {dracula as CodeStyle} from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -38,7 +40,7 @@ export default function Post(props) {
         <ReactMarkdown 
             className="text-left"
             remarkPlugins={[gfm,remarkMentions, remarkMath]}
-            rehypePlugins={[rehypeKatex]}
+            rehypePlugins={[rehypeKatex, rehypeInline, rehypeRaw]}
             children={content}
             components={{
                 code({node, inline, className, children, ...props}) {
@@ -66,5 +68,3 @@ export default function Post(props) {
         </ReactMarkdown>
     </article>); 
 };
-
-// dracula 

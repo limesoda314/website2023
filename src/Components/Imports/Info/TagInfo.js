@@ -1,5 +1,5 @@
 const TagInfo = [
-    "tag1",
+    "minecraft",
     "tag2",
     "tag3",
     "tag4"
