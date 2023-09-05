@@ -7,10 +7,10 @@ import Gallery from './Components/Pages/Gallery';
 import Blog from './Components/Pages/Blog';
 import Layout from './Components/Pages/Layout';
 import NoPage from './Components/Pages/NoPage';
-import ProjectInfo from './Components/Imports/Info/ProjectInfo';
-// import BlogInfo from './Components/Imports/Info/BlogInfo';
+import ProjectLinks from './Components/Imports/Info/ProjectLinks';
 import BlogLinks from './Components/Imports/Info/BlogLinks'; 
-import Post from './Components/posts/post';
+import Post from './Components/Imports/Blog/post';
+import Project from './Components/Imports/Projects/project';
 
 function App() {
   // Generate routes for individual blog posts
@@ -19,6 +19,15 @@ function App() {
       key={blog.id}
       path={`blog/${blog.href}`}
       element={<Post markdown={blog.content}/>}
+    />
+  ));
+
+  // Generate routes for individual project posts
+  const projectRoutes = ProjectLinks.map((project) => (
+    <Route
+      key={project.id}
+      path={`projects/${project.href}`}
+      element={<Project markdown={project.content}/>}
     />
   ));
 
@@ -32,10 +41,8 @@ function App() {
             <Route path="gallery" element={<Gallery />} />
             <Route path="blog" element={<Blog />} />
             <Route path="*" element={<NoPage />} />
-            {ProjectInfo.map(({ page, href, id }) => (
-              <Route key={id} path={`projects/${href}`} element={page} />
-            ))}
             {postRoutes}
+            {projectRoutes}
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,26 +1,54 @@
-import { useState } from 'react';
-import {Typography} from "@material-tailwind/react";
-import BlogInfo from "../Imports/Info/BlogInfo"; 
-
+import React, { useState, useEffect } from 'react';
+import { remark } from 'remark';
+import remarkFrontmatter from 'remark-frontmatter'; 
+import remarkParseFrontmatter from 'remark-parse-frontmatter';
+import { Typography } from "@material-tailwind/react";
+import BlogLinks from "../Imports/Info/BlogLinks"; // Import an array of Markdown file paths here
 import tagList from "../Imports/Info/TagInfo"; 
 import SortingBar from '../Imports/Blog/sortingBar';
 import FormatTags from '../Imports/Blog/formatTags';
 import FormatPosts from '../Imports/Blog/formatPosts';
 
 function Blog() {
-    // use react states 
-    const [BlogArray, setBlogArray] = useState(BlogInfo); 
-    const [reformat, setReformat] = useState(0); 
-    var mapArray = [];
-    tagList.map(tag => 
-        mapArray.push([tag, -1])    
-    )
-    const [tagMap, setTagMap] = useState(new Map(mapArray));
-    
-    const [greenTag, setGreenTag] = useState(0); 
-    const [showMore, setShowMore] = useState([0, "Show More"]); 
-    const [showOptions, setShowOptions] = useState(0); 
+    // State variables
+    const [BlogArray, setBlogArray] = useState([]);
+    const [reformat, setReformat] = useState(0);
+    const [tagMap, setTagMap] = useState(new Map(tagList.map(tag => [tag, -1])));
+    const [greenTag, setGreenTag] = useState(0);
+    const [showMore, setShowMore] = useState([0, "Show More"]);
+    const [showOptions, setShowOptions] = useState(0);
     const [sortedBy, setSortedBy] = useState(-1);
+
+    useEffect(() => {
+        const fetchAndProcessMarkdown = async () => {
+            const newBlogArray = [];
+
+            for (const blogLink of BlogLinks) {
+                try {
+                    const response = await fetch(blogLink.content);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const md = await response.text();
+
+                    // Parse the Markdown content to extract YAML frontmatter
+                    const fileOfRemark = remark()
+                        .use(remarkFrontmatter, ['yaml', 'toml'])
+                        .use(remarkParseFrontmatter)
+                        .processSync(md);
+
+                    const frontmatter = fileOfRemark.data.frontmatter;
+                    newBlogArray.push(frontmatter);
+                } catch (error) {
+                    console.error('Error fetching Markdown content:', error);
+                }
+            }
+
+            setBlogArray(newBlogArray);
+        };
+
+        fetchAndProcessMarkdown();
+    }, [BlogLinks]);
 
     document.title = "Ann's Blog";
     return (

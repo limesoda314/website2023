@@ -1,9 +1,47 @@
 
+import React, { useState, useEffect } from 'react';
+import { remark } from 'remark';
+import remarkFrontmatter from 'remark-frontmatter'; 
+import remarkParseFrontmatter from 'remark-parse-frontmatter';
+
 import { Typography } from '@material-tailwind/react';
-import SimpleCard from '../Cards/SimpleCard';
-import ProjectInfo from '../Imports/Info/ProjectInfo'; 
+import ProjectLinks from '../Imports/Info/ProjectLinks'; 
+import FormatProjects from "../Imports/Projects/formatProjects"; 
 
 export default function Projects() {
+    const [ProjectArray, setProjectArray] = useState([]);
+
+    useEffect(() => {
+        const fetchAndProcessMarkdown = async () => {
+            const newProjectArray = [];
+
+            for (const projectLink of ProjectLinks) {
+                try {
+                    const response = await fetch(projectLink.content);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const md = await response.text();
+
+                    // Parse the Markdown content to extract YAML frontmatter
+                    const fileOfRemark = remark()
+                        .use(remarkFrontmatter, ['yaml', 'toml'])
+                        .use(remarkParseFrontmatter)
+                        .processSync(md);
+
+                    const frontmatter = fileOfRemark.data.frontmatter;
+                    console.log(frontmatter); 
+                    newProjectArray.push(frontmatter);
+                } catch (error) {
+                    console.error('Error fetching Markdown content:', error);
+                }
+            }
+
+            setProjectArray(newProjectArray);
+        };
+
+        fetchAndProcessMarkdown();
+    }, [ProjectLinks]);
 
     document.title = 'Projects';
     return (
@@ -18,13 +56,7 @@ export default function Projects() {
             </Typography>
             </div>
             
-            
-            <div className="flex flex-row flex-wrap justify-center text-center p-3">
-                    {ProjectInfo.map(({ href, description, title, id}) => (
-                        <SimpleCard key={id} title={title} description={description} href={href} />
-                    ))}
-            </div>
-                
+            <FormatProjects ProjectArray={ProjectArray}/> 
         </div>
 
     );

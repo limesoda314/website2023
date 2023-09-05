@@ -1,18 +1,18 @@
 // lorim ipsum text taken from: https://www.lipsum.com/
 
-import post1 from "../../posts/bamboo-farm.mdx"; 
-import test from "../../posts/test.md"; 
+import minecraftBambooFarm from "../../posts/minecraft/bamboo-farm.mdx"; 
+import codingQuestions from "../../posts/programming/Coding-Questions.mdx"; 
 
 const BlogLinks = [
     {
         id: 0,
         href: 'bamboo-farm',
-        content: post1, 
+        content: minecraftBambooFarm, 
     },
     {
         id: 1,
-        href: 'test', 
-        content: test, 
+        href: 'Coding-Questions', 
+        content: codingQuestions, 
     },
 ];
 export default BlogLinks;

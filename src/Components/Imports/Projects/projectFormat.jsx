@@ -12,7 +12,7 @@ import remarkFrontmatter from 'remark-frontmatter';
 import remarkParseFrontmatter from 'remark-parse-frontmatter';
 import { remark } from 'remark';
 
-import FormatPostHeading from './formatPostHeading';
+import FormatProjectHeading from './formatProjectHeading';
 
 
 export default function Post(props) {
@@ -46,12 +46,11 @@ export default function Post(props) {
       });
   }, [props.markdownFile]);
 
-
     return (
       <div>
       
         <article className="container mx-auto my-10 p-5 rounded-lg shadow-lg text-left prose prose-lg">
-          <FormatPostHeading title={frontmatter.title} author={frontmatter.author} date={frontmatter.date} tags={frontmatter.tags}/>
+          <FormatProjectHeading title={frontmatter.title} author={frontmatter.author} date={frontmatter.date}/>
         
           <ReactMarkdown 
               className="text-left"

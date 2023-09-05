@@ -1,4 +1,5 @@
-
+// used for the sorting options
+// will sort by title and by date
 
 export function compareByTitleA(a, b) {
     if (a.title < b.title) {

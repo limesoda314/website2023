@@ -1,0 +1,117 @@
+# Best Time to Buy and Sell
+Date: 8-45-2023
+Solution By: Ann Miyaguchi
+[Leetcode Link](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/)
+
+## Problem Prompt 
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+### Example 1:
+```
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+```
+
+### Example 2:
+```
+Input: prices = [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transactions are done and the max profit = 0.
+```
+
+
+Constraints:
+```
+1 <= prices.length <= 10^5
+0 <= prices[i] <= 10^4
+```
+----------------------------------------------
+
+## Thought Process 
+We're trying to find best forward difference, meaning we can not find the difference between A and B if B starts before A; A must always be before B and A must be smaller than B. If there is no case of A < B we return 0 otherwise we return B-A 
+```
+ex: 7 3 4; while 7-3 is > 4-3, we can not count 7-3 since 7 is before 3 
+best case, min appears before max: if the sequence was 3 4 7, sol: 7-3 
+worst case, min appears after max: if the sequence was 7 3 4, sol: 4-3
+no solution, no max after min: if sequence was 7 4 3, return 0. No matter the A, there is no case of A < B
+```
+
+### Possible solutions: 
+
+#### solution 0: 
+* check second best min and max 
+* check best min and second max 
+    * pros: just need to get min and max a few times, O(n) runtime 
+    * cons: might not cover all cases 
+#### solution 1: 
+* calculate all pairs of selling and keep best price for each index 
+* if we wanted the buy and sell we could map it but don't need that so skip for now 
+    * ex: 
+        {7,1,5,3,6,4} -> {0, 5, 1, 3, 0, 0}  // 0 if all other prices after are more pricy 
+        runtime of O(n^2) since we need to get the max n times, how can we optimize it? 
+    * possible issues: 
+        * use of library (unlikely)
+        * inefficient solution, reasoning: O(n^2) (highly likely)
+
+#### solution 2: 
+* earlier we were checking for each buying day, what it's best selling day was 
+* the issue was that we were comparing today's buying with tomorrow, the day after tomorrow, the next week, and so forth. We did this for every single buying day so that ended up being nxn 
+* what would happen if we think about it in the perspective of finding the best buying day for the best selling day? 
+* If yesterday we bought it for X dollars and today we can sell/buy for Y dollars, there are 3 cases but really only 2: 
+    * 1: Y > X then we sell for a profit :) 
+    * 2: Y < X then we buy today instead 
+    * 3: Y = X it doesn't change anything since we don't care about buy and sell days 
+
+* in case 1, we sell since if we're always changing X to be the smallest buy value, we'll see the highest profit for today without having to check all of tomorrow's values 
+* in case 2, we buy since if tomorrow it's higher, we'll have the best difference using today's values 
+        
+
+### Solution 1: Exceeds time limit, runtime of O(n^2)
+```c++
+int maxProfit(std::vector<int>& prices) {
+    int best_result = 0; 
+    int todays_best = 0; // will find best sell for today's buy
+
+    for (unsigned i = 0; i < prices.size()-1; i++) {
+        // get best difference for today's price 
+        todays_best = *max_element(prices.begin()+i+1, prices.end()) - prices.at(i); // adds in the extra complexity of O(n) inside the for loop 
+        if (todays_best > best_result) {
+            best_result = todays_best; 
+        }
+    }
+    return best_result;
+}
+```
+
+### Solution 2: Passes, should have runtime of O(n)
+```c++
+int maxProfit(std::vector<int>& prices) {
+    int best_result = 0; 
+    int todays_best = 0;           // today's best sell, if we end up buying then today's best will be 0 
+    int buy_value = prices.at(0);  // we add in an extra variable for best buy 
+
+    for (unsigned i = 0; i < prices.size(); i++) {
+
+        // check if today's is smaller, if it is then when we compare it to tomorrow's price, today's would be best :) 
+        // also if today's is smaller then we can't even sell yesterday's price today 
+        if (prices.at(i) < buy_value) {
+            buy_value = prices.at(i); 
+        }
+
+        // what value would it sell today? 
+        todays_best = prices.at(i) - buy_value; 
+
+        // check if today's difference is better than total, if it is we change it 
+        if (todays_best > best_result) {
+            best_result = todays_best; 
+        }
+    }
+    return best_result;
+}
+```
