@@ -7,7 +7,6 @@ import SortingBar from '../Imports/Blog/sortingBar';
 import FormatTags from '../Imports/Blog/formatTags';
 import FormatPosts from '../Imports/Blog/formatPosts';
 
-
 function Blog() {
     // use react states 
     const [BlogArray, setBlogArray] = useState(BlogInfo); 

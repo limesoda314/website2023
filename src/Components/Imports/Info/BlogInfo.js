@@ -1,6 +1,6 @@
 // lorim ipsum text taken from: https://www.lipsum.com/
 
-import post1 from "../../posts/bamboo-farm.md"; 
+import post1 from "../../posts/bamboo-farm.mdx"; 
 import test from "../../posts/test.md"; 
 
 const BlogInfo = [

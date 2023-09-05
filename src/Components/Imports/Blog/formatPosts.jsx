@@ -2,13 +2,11 @@ import BlogCard from "../../Cards/BlogCard";
 export default function FormatPosts(props) {
     function isSelected(tags) {
 
-
         // include all green tags WITHOUT red tags, include grey tags 
         //
         // don't include grey tags WITHOUT green tags IF there are ANY green tags within the hashmap
         // 
         // exclude any red tags WITH grey tags OR WITH GREEN TAGS 
-
 
         let green = false; 
         for (let i = 0; i < tags.length; i++) {
@@ -36,10 +34,8 @@ export default function FormatPosts(props) {
                 return false;
             }
         }
-        
 
     }
-
 
     function toReformat() {
         if (props.reformat === 1) {
