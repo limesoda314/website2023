@@ -1,0 +1,203 @@
+---
+href: climbing-stairs
+title: Climbing Stairs
+date: 2023-08-27
+author: Ann Miyaguchi
+description: Solution for Climbing Stairs
+tags: 
+    - leetcode
+    - coding
+    - programming
+    - dynamic programming
+---
+
+## Climbing Stairs
+[Leetcode Link](https://leetcode.com/problems/climbing-stairs/) • [Question List](Coding-Questions)
+
+### Prompt
+>You are climbing a staircase. It takes n steps to reach the top.
+>Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+ 
+
+#### Example 1:
+```
+Input: n = 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+```
+
+#### Example 2:
+```
+Input: n = 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+ 
+```
+
+
+Constraints:
+```
+1 <= n <= 45
+```
+
+
+## Linear Recurrence Solution 
+
+For this problem, we can solve for the particular solution which would leave us with a formula that we can just plug n into. 
+
+The steps we need to take in order to get the particular solution is listed below:
+
+1) find the recurrence formula
+2) solve for characteristic equation 
+3) solve for roots
+4) find general solutin
+5) solve for initial conditions
+6) plug in initial conditions into general solution 
+
+
+### Find the Recurrence Formula 
+To find the recurrence formula, we must first identify the base cases and the recursive step. 
+
+In this problem, we know that if n=1, then there is only 1 distinct way, if n=2 there are 2 distinct ways, if n=3 there are 3 distinct ways, if n=4 there are 5 distinct ways and so forth.  
+
+After n=2, we can use what we know from the previous steps in order to solve for the number of distinct ways at n.
+
+If we were to do this in code, a basic solution is:
+
+```c++
+int climbStairs(int n) {
+    if (n == 1) {
+        return 1; 
+    }
+    if (n == 2) {
+        return 2;
+    }
+    return climbStairs(n-1) + climbStairs(n-2); 
+}
+```
+
+The first two if statements are the base cases and the bottom return statement is our recursive step. 
+
+If were were to write out the recurrence formula, we are left with the following
+
+Recurrence Formula: 
+
+$$t_n = t_{n-1} + t_{n-2}$$ for n>2 
+
+$$t_1 = 1, t_2 = 2$$
+
+We can figure out if it works for different values of n: 
+
+- $$$t_3 = t_2+t_1 = 3$$$
+- $$$t_4 = t_3+t_2 = 5$$$
+- $$$t_5 = t_4+t_3 = 8$$$ 
+- $$$t_6 = ... $$$
+
+Furthermore, when n=0, then t_0=1 since n=0 represents no steps which is one distinct way. 
+
+
+### Solving for characteristic equation
+
+The next step is to solve for the characteristic equation, this means that we are trying to find the *exact* formula. To do so, we must first convert our recurrence formula in the form of Fn.
+
+$$F_n = F_{n-1} + F_{n-2}$$
+
+$$F_1 = 1, F_2 = 2$$
+
+
+Now, we know that Fn grows exponentially, we can assume that Fn = x^n. If we are to sub that in we get the following: 
+
+
+$$F_n = x^n$$, sub in x^2
+
+$$F_n = F_{n-1} + F_{n-2}$$
+
+$$x^n = x^{n-1} + x^{n-2}$$
+
+divide both sides by $x^{n-2}$ 
+
+$$x^n = x^{n-1} + x^{n-2}$$ 
+$$x^2 = x + 1$$ 
+
+
+Now that we are left with our characteristic equation, we can solve for the roots 
+
+Characteristic Equation: $$x^2 - x - 1 = 0$$
+
+
+### Solve for roots: 
+Since our characteristic equation is a polynomial equation, we can use the quadratic formula to solve for the roots. 
+
+
+    quadratic formula: $$x = (\frac{-b + \sqrt{b^2-4ac})}{2a}; \frac{-b - \sqrt{b^2-4ac})}{2a}$$
+
+    $x = \frac{-(-1) + \sqrt{(-1)^2-4(1)(-1)}}{2(1)}; \frac{-(-1) - \sqrt{(-1)^2-4(1)(-1)}}{2(1)}$ 
+    
+    $x = \frac{ 1 + \sqrt5 }{ 2 }; \frac{1 - \sqrt5 }{2}$
+
+
+
+
+### Finding the General Solution
+
+Now assuming that g(n) satisfies our recurrence: g(n) = g1(n-1) + g2(n-2)
+
+Then for any constant a, a*g(n) must also satisfy the recurrence. That means for all functions $a_1x_1^n$ and $a_2x_2^n$ satisfy our recurrence (where $g_1(n)=x_1^n$ and $g_2(n)=x_2^n$)
+
+If g1(n) and g2(n) are solutions of the recurrence, then so is their sum g(n)
+g(n)=g1(n)+g2(n)
+
+If so, we know that the following equation satisfies the recurrence and is our general solution:
+
+
+$$F_n = a_1x_1^n + a_2x_2^n$$
+
+
+### Solving for the initial conditions:     
+
+Now that we know what the general solution is, we can now solve for the initial conditions 
+
+We know that when: 
+
+n = 0 
+- $$a_1x_1^0 + a_2x_2^0 = 1 \rightarrow a_1 + a_2 = 1$$
+
+n = 1 
+- $$a_1x_1^1 + a_2x_2^1 = 1 \rightarrow a_1(\frac{1 + \sqrt5 }{2}) + a_2(\frac{ 1 - \sqrt5 }{2} ) = 1$$
+
+Solve for $a_1$ and $a_2$: 
+        
+- If $$a_2 = 1 - a_1$$:
+    - Sub in $$1-a_1$$: 
+        - $$a_1(\frac{ 1 + \sqrt5 }{2}) + (1- a_1)(\frac{1 - \sqrt5 }{2} ) = 1 $$
+    - Expand $$(1- a_1)(( 1 - \sqrt5 ) / 2 )$$
+        - $$a_1\frac{ 1 + \sqrt5 }{2 } + \frac{ 1 - \sqrt5 }{2 } + a_1(-\frac{ 1 - \sqrt5 }{2 }) = 1 $$
+    - Combine like terms ($a_1$): 
+        - $$\frac{ 1 - \sqrt5 }{2 }+ a_1 [-\frac{ 1 - \sqrt5 }{2 } + \frac{ 1 + \sqrt5 }{2 } ] = 1$$ 
+    - commutative rule ( 1 - sqrt(5) ) / 2:  
+        - $$a_1 [ \frac{ -1 + \sqrt5 }{2 } + \frac{1+\sqrt5}{2}] = 1 - \frac{ 1 - \sqrt5 }{2 } $$ 
+    - Combine like terms: 
+        - $$a_1 [ \frac{-1+\sqrt5}{2} + \frac{ 1 + \sqrt5 }{2 } ] = 2/2- \frac{ 1 - \sqrt5 }{2 } $$     
+        - $$a_1\frac{\sqrt5}{2} = \frac{1+\sqrt5}{2}$$
+    - divide by $$\frac{2\sqrt5}{2}$$
+        - $$a_1 = \frac{\frac{1+\sqrt5}{2}} {\frac{2\sqrt5}{2}}$$
+        - $$a_1 = \frac{1+\sqrt5}{2\sqrt5}$$
+
+    $$a_1 = \frac{1+\sqrt5}{2\sqrt5}; a_2 = \frac{-1+\sqrt5}{2\sqrt5}$$
+
+    Solve for Particular Solution 
+        - Plug in a_1 and a_2 into General Solution 
+            - $$F_n = a_1x_1^n + a_2x_2^n  $$
+            - $$F_n = \frac{1+\sqrt5}{2\sqrt5}* (\frac{-1+\sqrt5}{2})^n  + \frac{-1+\sqrt5}{2\sqrt5} * (\frac{1-\sqrt5}{2})^n$$
+            - $$F_n = \frac{1}{\sqrt5} ([(\frac{1+\sqrt5}{2})* (\frac{1+\sqrt5}{2})^n] + [-(\frac{1-\sqrt5}{2}) * (\frac{1-\sqrt5}{2})^n]) $$
+            - $$Fn = \frac{1}{\sqrt5} [(\frac{1+\sqrt5}{2})^{n+1} - (\frac{1-\sqrt5}{2})^{n+1}]$$
+
+        
+        Solution: 
+            $$Fn = \frac{1}{\sqrt5} [(\frac{1+\sqrt5}{2})^{n+1} - (\frac{1-\sqrt5}{2})^{n+1}]$$

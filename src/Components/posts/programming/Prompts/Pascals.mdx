@@ -1,0 +1,91 @@
+---
+href: pascals-triangle
+title: Pascal's triangle
+date: 2023-08-27
+author: Ann Miyaguchi
+description: Solution for Pascal's triangle
+tags: 
+    - leetcode
+    - coding
+    - programming
+    - dynamic programming
+---
+## Pascal's Triangle 
+[Leetcode Link](https://leetcode.com/problems/pascals-triangle/) • [Question List](Coding-Questions)
+>Given an integer numRows, return the first numRows of Pascal's triangle.
+
+>In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+![Alt text](/images/programming/pascals-triangle.png)
+
+
+Example 1:
+```
+Input: numRows = 5
+Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+```
+Example 2:
+```
+Input: numRows = 1
+Output: [[1]]
+```
+
+Constraints:
+```
+1 <= numRows <= 30
+```
+
+## Solution 
+```cpp
+vector<vector<int>> generate(int numRows) {
+        
+        vector<vector<int>> solution = {{1}};
+
+        for (int i = 1; i < numRows; i++) {
+            vector<int> row(i+1); // each row is i+1 long since we're using 0 index (row 0 is already initialized)
+            
+            for (int j = 0; j < i+1; j++) {
+                // first and last hexagon is always 1 
+                if (j == 0 || j == i) {
+                    row.at(j) = 1; 
+                } 
+                else {
+                    // every inner hexagon is a combo of the above hexagon to their right and left 
+                    row.at(j) = solution.at(i-1).at(j-1) + solution.at(i-1).at(j); 
+                }
+            }
+            solution.push_back(row); 
+        }
+
+        // output solution 
+        for (int i = 0; i < solution.size(); i++) {
+            cout << "row " << i+1 << ": "; 
+            for (int j = 0; j < solution.at(i).size(); j++) {
+                cout << solution.at(i).at(j) << " "; 
+            }
+            cout << endl; 
+        }
+
+        return solution; 
+        
+    }
+```
+For this problem I take the iterative approach. I first initialize the solution vector with the first row. Since I only have the first row initially, I later use temp vectors for each row that I later add to the solution vector. 
+
+In the outer for loop I initialize the row. Row n is corresponds to the i+1 iteration in the for loop since I am using zero indexing. 
+
+The inner for loop is used to populate the row we just initialized. We know that the far right and left sides will always be 1, so I have an if statement to catch this exception. 
+
+To calculate the inner values, we have to look at the previous row. If we are currently in the 3rd row (i=2) and at the 2nd value, we need to add two values in the 2nd row (i=1). These values are going to be at whatever index we're currently in and the one before it. Since we're at the 2nd value (index 1), we need to look at i=1, index 0 and 1. 
+
+This works for all values that are on the inside and not the outside. If were to try and use this formula on the first and last index of the row, we would get an out of range error since we would be trying to look at values that don't exist. 
+
+After we finish populating the row with the correct values, we add it to the solution vector and it continues to the next iteration until it finishes. 
+
+
+
+
+
+
+
+
+

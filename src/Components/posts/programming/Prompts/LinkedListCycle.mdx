@@ -1,0 +1,80 @@
+---
+href: linked-list-cycle
+title: Linked List Cycle
+date: 8-28-2023
+author: Ann Miyaguchi
+description: Solution for Linked List Cycle
+tags: 
+    - leetcode
+    - coding
+    - programming
+    - linked lists
+---
+# Linked List Cycle
+
+[Leetcode Link](https://leetcode.com/problems/linked-list-cycle/) • [Question List](Coding-Questions)
+
+>Given head, the head of a linked list, determine if the linked list has a cycle in it.
+
+>There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+
+>Return true if there is a cycle in the linked list. Otherwise, return false.
+
+ 
+
+Example 1:
+![Alt text](/images/programming/link-cycle-1.png)
+```
+Input: head = [3,2,0,-4], pos = 1
+Output: true
+Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+```
+
+Example 2:
+![Alt text](/images/programming/link-cycle-2.png)
+```
+Input: head = [1,2], pos = 0
+Output: true
+Explanation: There is a cycle in the linked list, where the tail connects to the 0th node.
+```
+
+Example 3:
+![Alt text](/images/programming/link-cycle-3.png)
+```
+Input: head = [1], pos = -1
+Output: false
+Explanation: There is no cycle in the linked list.
+```
+ 
+
+Constraints:
+```
+The number of the nodes in the list is in the range [0, 104].
+-105 <= Node.val <= 105
+pos is -1 or a valid index in the linked-list.
+```
+
+ 
+
+Follow up: Can you solve it using O(1) (i.e. constant) memory?
+
+
+## Solution
+```c++
+bool hasCycle(ListNode *head) {
+    set<ListNode*> myNodes; 
+    ListNode *curr = head; 
+    while(curr!= nullptr && curr->next != nullptr) {
+        // cout << curr->val << endl; 
+        if (myNodes.find(curr->next) != myNodes.end()) {
+            // finds the node in the set, we found a cycle
+            cout << "cycle found" << endl; 
+            return true; 
+        }
+        myNodes.insert(curr); 
+        curr = curr->next; 
+    }
+    cout << "no cycle" << endl; 
+    return false;
+}
+```

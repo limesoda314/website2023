@@ -1,7 +1,18 @@
+---
+href: roman-to-integer
+title: Roman to Integer 
+date: 2023-08-28
+author: Ann Miyaguchi
+description: Solution for Roman to Integer 
+tags: 
+    - leetcode
+    - coding
+    - programming
+    - hashing
+---
 # Roman to Integer 
-Date: 8-27-2023
-Solution By: Ann Miyaguchi
-[Leetcode](https://leetcode.com/problems/roman-to-integer/)
+
+[Leetcode](https://leetcode.com/problems/roman-to-integer/) • [Question List](Coding-Questions)
 
 Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 ```
@@ -49,3 +60,33 @@ Constraints:
 * s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
 * It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 ```
+
+## Solution 
+
+In my solution I create two maps, one called solution_map and the other called exception_map. In the solution_map, we map each roman symbol with it's value. 
+
+Three of the characters (I,X, and C) behave differently if they are placed before their exception symbols. For all three characters there are only 2 exceptions, so I map the characters to their exceptions as a combined string. 
+
+
+```cpp
+unordered_map<char, int> solution_map {
+    {'I', 1},
+    {'V', 5},
+    {'X', 10},
+    {'L', 50},
+    {'C', 100},
+    {'D', 500},
+    {'M', 1000}
+};
+unordered_map<char, string> exception_map {
+    {'I', "VX"},
+    {'X', "LC"},
+    {'C', "DM"}
+};
+```
+
+For my main logic, I have it check if the character is one of the exception symbols. If it is, we first check if it's at the end of the string or not to avoid causing an out of range error.
+
+If it's not the end of the string, we check if the next character is one of their exception symbols. If it is we subtract instead of adding. 
+
+In all other cases we add the value. 
