@@ -48,7 +48,7 @@ function Blog() {
         };
 
         fetchAndProcessMarkdown();
-    }, [BlogLinks]);
+    }, []);
 
     document.title = "Ann's Blog";
     return (

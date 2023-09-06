@@ -41,7 +41,7 @@ export default function Projects() {
         };
 
         fetchAndProcessMarkdown();
-    }, [ProjectLinks]);
+    }, []);
 
     document.title = 'Projects';
     return (
