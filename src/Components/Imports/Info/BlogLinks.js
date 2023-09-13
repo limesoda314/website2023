@@ -9,6 +9,7 @@ import climbingStairs from "../../posts/programming/Prompts/ClimbStairs.mdx";
 import alienDictionary from "../../posts/programming/Prompts/AlienDictionary.mdx";
 import pascals from "../../posts/programming/Prompts/Pascals.mdx";
 import romanToInt from "../../posts/programming/Prompts/RomantoInteger.mdx";
+import loops from "../../posts/programming/Notes/loops.mdx"; 
 
 const BlogLinks = [
     {
@@ -55,6 +56,11 @@ const BlogLinks = [
         id: 8,
         href: 'roman-to-integer', 
         content: romanToInt, 
+    },
+    {
+        id: 9,
+        href: 'loops', 
+        content: loops, 
     },
 ];
 export default BlogLinks;

@@ -1,0 +1,136 @@
+---
+href: loops
+title: Notes on loops 
+date: 2023-09-12
+author: Ann Miyaguchi
+description: Some notes on for loops and while loops 
+tags: 
+    - coding
+    - programming
+    - notes 
+---
+
+## Types of loops
+
+There are a few different types of loops that you'll encounter or use. Today I'll go over the following loops and a few examples of how to use them.
+- while loop
+- for loop
+- do-while loop
+- foreach loop
+
+### While loops 
+
+A while loop is probably one of the first types of loops you learn how to use along with a for loop. The while loop will complete whatever is inside of it until the condition no longer holds true. 
+
+```c++
+while (true) {
+    cout << pizza << endl; 
+}
+```
+
+The above is an example of a while loop in c++. This loop will execute infinitely (or until the program crashes) since our condition is always true. If our condition was instead false then the contents of the while loop would never execute. 
+
+```python 
+i = 0 
+while i < 10: 
+    print(i)
+    i+=1 
+``` 
+
+In the above example, we have a while loop in python. Similarly to c++, we have the keyword "while" followed by the condition that we no longer execute the contents when i equal or greater than 10. 
+This while loop prints the numbers 0-9, but at the end of the while loop i will be 10 
+
+
+### break, continue, and return 
+
+If we want to exit a loop for a reason other than the conditional cause, we can use either a break, continue or return statement. return is used in funtions to return a value, however if used inside of a while loop we can end the while loop and the funtion early. 
+
+break and continue can be used to either leave the loop or to jump to the next iteration. break is used to leave or stop executing the loop. However, continue just stops that iteration and will continue off from the next iteration. 
+
+
+```c++
+int i = 0;
+while (i < 50) {
+    
+    if (i == 10) {
+        cout << "break" << endl; 
+        break; 
+    }
+    cout << i << endl;
+    i++; 
+}
+```
+
+```c++
+int i = 0;
+while (i < 50) {
+    
+    if (i == 10) {
+        cout << "continue" << endl; 
+        continue; 
+    }
+    cout << i << endl;
+    i++; 
+}
+```
+
+Now, given the same while loop where the only difference is the break and continue, what would be the results? Well in the loop with break, we print out 0-9 and "break". Then we exit the while loop. 
+
+When we use continue, we print 0-9 and then we infinitely print "continue". Since we only increase i *after* the if statement, once i is equal to 10, we never have the chance to increase i leading to an infinite loop. 
+
+Now, if we were to rearrange the code just slightly to this: 
+
+```c++
+int i = 0;
+while (i < 50) {
+    i++; 
+    if (i == 10) {
+        cout << "continue" << endl; 
+        continue; 
+    }
+    cout << i << endl;
+    
+}
+```
+then we will print 1-9, "continue", 11-50.  
+
+
+### Nested loops with break and continue 
+
+Let's say we have the following code snippet:
+
+```c++
+int i = 0;
+while (i < 20) {
+    cout << "i: " << i << endl;
+    int j = 0; 
+    while (j < 50) {
+        cout << "    j: " << j << endl;
+        j+=10;
+        i++; 
+        
+        if (i == 12) {
+            cout << "break" << endl; 
+            break; 
+        }
+    }
+    
+}
+```
+
+What do you think will be output from this? What is the highest value of i that will be output and what is the value of i at the end of the for loop? 
+
+
+Well, first let's start with the outer while loop. Our condition is that i has to be less than 20. Because of that the highest value we'll see output of i is at most 19. In each iteration of the outer loop, we print the value of i and initialize the variable j to 0. 
+
+In the inner while loop, we have the condition that j < 50. Similar to the outer loop, we print the value of j. The inner loop is where we increase the values of j and i. j increases by 10 each iteration and i increases by 1. As such the values that will be printed for j will have the following values:
+0, 10, 20, 30, 40. The inner loop will at max iterate 5 times, however when i is 12 (or in the 3rd iteration of the outer for loop), the inner loop only iterates 2 times before it breaks and prints "break". 
+
+After that we have 2 more iterations of the outer loop. Because we increase the value of i in the inner loop, we only see the value of i in increments of 5, except for when we have the break. 
+
+As such the values of i will be 0, 5, 10, 12, 17.
+
+
+If we were to replace the break with continue, we'll see "continue" in between j: 10 and j: 20 in the 3rd iteration of the outer loop. The outer loop will iterate 4 times with i equal to 0, 5, 10, 15. For each iteration, j outputs the same values of 0, 10, 20, 30, 40. 
+
+
