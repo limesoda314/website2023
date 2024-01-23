@@ -15,7 +15,10 @@ export default function SortingBar(props) {
     return (
         <div className="relative inline-block m-4 mb-0">
             <div>
-                <button type="button" onClick={ () => { (props.showOptions === 0) ? props.setShowOptions(1) :  props.setShowOptions(0) } } 
+                <button type="button" onClick={ 
+                    // when you click this button, show or hide the dropdown with sorting options; default is to not show 
+                    () => { (props.showOptions === 0) ? props.setShowOptions(1) :  props.setShowOptions(0) } 
+                } 
                 
                 className="inline-flex w-full right-0 gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button">
                 Sorting Options
@@ -29,17 +32,20 @@ export default function SortingBar(props) {
             
             <div className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex="-1">
                 <div className="py-1" role="none">
-
+                    
                     {buttonArray.map(({ title, bsort, id}) => (
-                            <button onClick={
-                                () => { 
-                                    props.setBlogArray(props.BlogArray.sort(bsort)); 
-                                    props.setReformat(1);
-                                    props.setSortedBy(id);
-                                } 
-                            }
-                            className="w-full text-gray-700 hover:bg-green-100 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">{title}</button> 
-                        ))}
+                        // using a map to generate the buttons for each option
+                        // clicking a button calls the corresponding sort function (id) and reformats the posts
+                        // we keep track of which sort was clicked and later display it
+                        <button onClick={
+                            () => { 
+                                props.setBlogArray(props.BlogArray.sort(bsort)); 
+                                props.setReformat(1);
+                                props.setSortedBy(id);
+                            } 
+                        }
+                        className="w-full text-gray-700 hover:bg-green-100 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">{title}</button> 
+                    ))}
                    
                 </div>
                 <div className="text-center bg-slate-200 p-3">

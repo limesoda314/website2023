@@ -20,11 +20,11 @@ export default function Gallery() {
         </div>
         
         <div className="flex flex-col flex-wrap justify-center text-center h-min">
-            {images.map(({ title, href, description, alt, date, id}) => (
+            {images.map(
+                // shows all images from the import page and includes the info about it
+                ({ title, href, description, alt, date, id}) => (
                 <GalleryCard title={title} href={href} description={description}  alt={alt} date={date} key={id}/>
             ))}
         </div>
-
-
     </div>); 
 };

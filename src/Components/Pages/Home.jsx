@@ -8,8 +8,7 @@ function Home() {
                     Home
                 </Typography>
                 <Typography variant="paragraph" className="m-8">
-                    Hello! I'm Ann, a soon to be masters student at UCR. I just graduated with my bachelor's this spring so over the summer I'm planning to work on this website. 
-                    Hopefully before the end of summer you'll get to see something cool
+                    Hello! I'm Ann, I just graduated with my bachelor's spring 2024. I plan to improve this website soon! 
                 </Typography>
                 
             </div>

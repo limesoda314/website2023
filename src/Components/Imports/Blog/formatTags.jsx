@@ -6,7 +6,7 @@ export default function FormatTags(props) {
     
     props.tagList.forEach((tag) => {
         
-        // include 
+        // include tags 
         if (props.tagMap.get(tag) === 1 || props.tagMap.get(tag) === true) {
             tagClass = "bg-green-300 hover:bg-red-500 text-black rounded-md m-2 px-2 py-1 ";
             newTagList.push(<button className={tagClass} 
@@ -19,7 +19,7 @@ export default function FormatTags(props) {
             >#{tag}</button>);
         
         }
-        // exclude  
+        // exclude tags
         else if (props.tagMap.get(tag) === 0 || props.tagMap.get(tag) === false) {
             tagClass = "bg-red-400 hover:bg-slate-500 text-black rounded-md m-2 px-2 py-1";
             newTagList.push(<button className={tagClass} 

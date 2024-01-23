@@ -5,9 +5,12 @@ import remarkParseFrontmatter from 'remark-parse-frontmatter';
 import { Typography } from "@material-tailwind/react";
 import BlogLinks from "../Imports/Info/BlogLinks"; // Import an array of Markdown file paths here
 import tagList from "../Imports/Info/TagInfo"; 
+// import themeColors from '../Imports/Info/ThemeColors'; 
+
 import SortingBar from '../Imports/Blog/sortingBar';
 import FormatTags from '../Imports/Blog/formatTags';
 import FormatPosts from '../Imports/Blog/formatPosts';
+
 
 function Blog() {
     // State variables
@@ -62,7 +65,7 @@ function Blog() {
                     Hello and welcome to my blog where I talk about things that I'm interested in. 
 
                 </Typography>
-                <Typography className="text-left m-8">
+                <Typography className="text-left">
                     <button className="bg-cyan-300 p-2 rounded-lg" 
                     onClick={  () => { (showMore[0] === 0) ? setShowMore([1, "Show Less"]) : setShowMore([0, "Show More"])} } 
                     >{showMore[1]}</button> 
@@ -98,7 +101,7 @@ function Blog() {
                     }
                 </Typography>
             </div>
-            <Typography className="relative w-full h-min sticky z-10 inset-x-0 top-14 bg-lime-600">
+            <Typography className="relative w-full h-min sticky z-10 inset-x-0 top-0 bg-gray-600">
                     <div className="flex justify-end pt-10">
                         <SortingBar showOptions={showOptions} setShowOptions={setShowOptions} sortedBy={sortedBy} setSortedBy={setSortedBy} BlogArray={BlogArray} setBlogArray={setBlogArray} reformat={reformat} setReformat={setReformat}/>
                     </div>
