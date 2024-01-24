@@ -1,26 +1,26 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { useState } from 'react';
 import themeColor from "../Imports/Info/ThemeColors"; 
+import readingMode from "../Imports/Info/ReadingMode"; 
 import testMenuItems from "../Imports/Info/MenuItems";
-import {useDispatch} from 'react-redux'; 
-// import colorValue from '../Imports/Variables/themeColor'; 
+import {useSelector, useDispatch} from 'react-redux'; 
 
 export default function Layout() {
    const [showMenu, setShowMenu] = useState(1); 
-//    const [colorValue, setColorValue] = useState(0); 
-   function toShowMenu() {return (showMenu === 1) ?  1 :  0; }
-   const [colorValue, setColorValue] = useState(0);
+   const { darkThemeIndex, themeColorIndex } = useSelector((state) => state.rootReducer);
    const dispatch = useDispatch(); 
+
+   function toShowMenu() {return (showMenu === 1) ?  1 :  0; }
 
    return (
        <div className='min-h-screen flex flex-col'>
-            <div className={themeColor[colorValue].color1}>
+            <div className={themeColor[themeColorIndex].color1}>
            <header className='z-50 text-white sticky top-0 h-14 flex justify-center items-center text-2xl font-semibold uppercase'>
                Ann Miyaguchi
            </header>
            </div>
            <div className='flex flex-col md:flex-row flex-1'>
-           <div className={themeColor[colorValue].color2}>
+           <div className={themeColor[themeColorIndex].color2}>
                <aside className='w-full h-min md:h-screen sticky z-20 inset-x-0 top-14 md:w-60'>
                
                    <nav>
@@ -44,7 +44,7 @@ export default function Layout() {
                             {testMenuItems.map(({ href, title }) => (
                                 <li className='m-2' key={title}>
                                     <NavLink to={href} >
-                                        <div className={themeColor[colorValue].hover1}>
+                                        <div className={themeColor[themeColorIndex].hover1}>
                                         <p className={'text-xl text-white'}>{title}</p>
                                         </div>
                                     </NavLink>
@@ -54,23 +54,28 @@ export default function Layout() {
                     : <div></div>
                     }
                        
-                    <div className={themeColor[colorValue].hover1}>
-                        <button className="inline-flex text-white text-2xl font-semibold uppercase mt-4" onClick={() => { dispatch({ type: 'UPDATE_COLOR_VALUE', payload: (colorValue + 1) % themeColor.length }); }}>
-                            change theme {/* {themeColor[colorValue].name} */}
-                        </button>
-                    </div>
-                    
+                        <div className={themeColor[themeColorIndex].hover1}>
+                            <button className="inline-flex text-white text-2xl font-semibold uppercase mt-4" onClick={() => { dispatch({ type: 'UPDATE_THEME_COLOR_INDEX', payload: (themeColorIndex + 1) % themeColor.length }); }}>
+                                change theme {/* {themeColor[themeColorIndex].name} */}
+                            </button>
+                        </div>
+                        <div className={themeColor[themeColorIndex].hover1}>
+                            <button className="inline-flex text-white text-2xl font-semibold uppercase mt-4" onClick={() => { dispatch({ type: 'UPDATE_READING_THEME', payload: (darkThemeIndex + 1) % readingMode.length }); }}>
+                                reading mode
+                            </button>
+                        </div>
+                       
                    </nav>
                    
                </aside> 
                </div>
                
-               <main className={'flex-1 h-full'}>
-                   <Outlet />
-               </main>
+                <main className={readingMode[darkThemeIndex].color1 + readingMode[darkThemeIndex].text + ' flex-1'}>
+                    <Outlet />
+                </main>    
                
            </div>
-           <div className={themeColor[colorValue].color1}>
+           <div className={themeColor[themeColorIndex].color1}>
            <footer className={"p-8 text-white flex inset-x-0 bottom-0 h-16 "}>
                 <p>
                     Ann Miyaguchi 

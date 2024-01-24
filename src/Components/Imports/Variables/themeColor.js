@@ -1,22 +1,25 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
-    colorValue: 0,
+    darkThemeIndex: 2,
+    themeColorIndex: 2,
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'UPDATE_COLOR_VALUE':
-            return { ...state, colorValue: action.payload };
-        default:
-            return state;
+       case 'UPDATE_READING_THEME':
+          return { ...state, darkThemeIndex: action.payload };
+       case 'UPDATE_THEME_COLOR_INDEX':
+          return { ...state, themeColorIndex: action.payload };
+       default:
+          return state;
     }
-};
+ };
 
-const colorValueStore = configureStore({
-    reducer: {
-        rootReducer: reducer,
-    },
+const themeColorStore = configureStore({
+   reducer: {
+      rootReducer: reducer,
+   },
 });
 
-export default colorValueStore;
+export default themeColorStore;

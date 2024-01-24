@@ -1,10 +1,10 @@
 // image code from: https://www.material-tailwind.com/docs/react/img
 // used in the gallery 
 import { Typography } from "@material-tailwind/react";
- 
+
 export default function ImgWithBlurredCaption(props) {
   return (
-    <figure className="relative h-96 w-full">
+    <figure className={"relative h-96 w-full"}>
       <img
         className="h-full w-full md:w-1/2 p-2 bottom-8 left-2/4 md:translate-x-1/2 justify-between rounded-xl object-cover object-center"
         src={props.href}

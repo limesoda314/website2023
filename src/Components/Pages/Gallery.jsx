@@ -3,16 +3,18 @@
 import GalleryCard from "../Cards/GalleryCard";
 import {Typography} from "@material-tailwind/react";
 import images from "../Imports/Info/images"; 
+import readingMode from "../Imports/Info/ReadingMode";
+import {useSelector} from 'react-redux'; 
 
 export default function Gallery() {
-
+    const { darkThemeIndex } = useSelector((state) => state.rootReducer);
     document.title = 'Gallery';
 
     return (
     
     <div>
         
-        <div className="m-8 h-full shadow-lg">
+        <div className={"m-8 h-full shadow-lg p-8" + readingMode[darkThemeIndex].color2 + readingMode[darkThemeIndex].text}>
         <Typography variant="h1" color="blue-gray">Gallery</Typography>
         <Typography className="m-8">
             Below are a few of my favorite photos

@@ -13,11 +13,13 @@ import remarkParseFrontmatter from 'remark-parse-frontmatter';
 import { remark } from 'remark';
 
 import FormatPostHeading from './formatPostHeading';
-
+import readingMode from "../Info/ReadingMode";
+import {useSelector} from 'react-redux'; 
 
 export default function Post(props) {
   const [content, setContent] = useState('');
   const [frontmatter, setFrontmatter] = useState({title:"", date: "", tags: [], author: ""});
+  const { darkThemeIndex} = useSelector((state) => state.rootReducer);
 
   useEffect(() => {
     console.log('Before fetch');
@@ -53,8 +55,9 @@ export default function Post(props) {
     return (
       <div>
       
-        <article className="container mx-auto my-10 p-5 rounded-lg shadow-lg text-left prose prose-lg">
-          <FormatPostHeading title={frontmatter.title} author={frontmatter.author} date={frontmatter.date} tags={frontmatter.tags}/>
+
+        <article className={"container mx-auto my-10 p-5 rounded-lg shadow-lg text-left prose prose-lg" + readingMode[darkThemeIndex].color2 + readingMode[darkThemeIndex].text}>
+          <FormatPostHeading title={frontmatter.title} author={frontmatter.author} date={frontmatter.date} tags={frontmatter.tags} textColor={ readingMode[darkThemeIndex].text }/>
         
           <ReactMarkdown 
             // ReactMarkdown formats the images, codeblocks, latex, and other extensions from a markdown file 

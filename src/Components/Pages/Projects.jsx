@@ -7,9 +7,12 @@ import remarkParseFrontmatter from 'remark-parse-frontmatter';
 import { Typography } from '@material-tailwind/react';
 import ProjectLinks from '../Imports/Info/ProjectLinks'; 
 import FormatProjects from "../Imports/Projects/formatProjects"; 
+import readingMode from "../Imports/Info/ReadingMode";
+import {useSelector} from 'react-redux'; 
 
 export default function Projects() {
     const [ProjectArray, setProjectArray] = useState([]);
+    const { darkThemeIndex } = useSelector((state) => state.rootReducer);
 
     useEffect(() => {
         const fetchAndProcessMarkdown = async () => {
@@ -47,7 +50,7 @@ export default function Projects() {
     return (
         
         <div className="flex flex-col">
-            <div className="m-8 h-full shadow-lg">
+            <div className={"m-8 h-full shadow-lg p-8" + readingMode[darkThemeIndex].color2 + readingMode[darkThemeIndex].text}>
             <Typography variant="h1"> 
                 Projects
             </Typography>

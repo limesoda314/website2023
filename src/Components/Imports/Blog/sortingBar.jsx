@@ -2,6 +2,9 @@ import { compareByTitleA, compareByTitleZ, compareByDateNewest, compareByDateOld
 // props
 // showOpions, setShowOptions, BlogArray, setBlogArray, reformat, setReformat, 
 // sortedByList, sortedBy, setSortedBy
+import themeColor from '../Info/ThemeColors';
+import {useSelector} from 'react-redux'; 
+
 export default function SortingBar(props) {
 
     var sortedByList = ["Title A-Z", "Title Z-A", "Date Newest", "Date Oldest"]; 
@@ -11,6 +14,7 @@ export default function SortingBar(props) {
         {title: "Date Newest", bsort : compareByDateNewest, id: 2},
         {title: "Date Oldest", bsort : compareByDateOldest, id: 3},
     ]; 
+    const { themeColorIndex } = useSelector((state) => state.rootReducer);
 
     return (
         <div className="relative inline-block m-4 mb-0">
@@ -44,11 +48,11 @@ export default function SortingBar(props) {
                                 props.setSortedBy(id);
                             } 
                         }
-                        className="w-full text-gray-700 hover:bg-green-100 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">{title}</button> 
+                        className={themeColor[themeColorIndex].hover1 + " w-full text-gray-700 block px-4 py-2 text-sm"} role="menuitem" tabIndex="-1" id="menu-item-0">{title}</button> 
                     ))}
                    
                 </div>
-                <div className="text-center bg-slate-200 p-3">
+                <div className="text-center bg-slate-200 text-slate-800 p-3">
                     Sorted By: {sortedByList[props.sortedBy]}
                 </div>
             </div> :

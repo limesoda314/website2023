@@ -7,8 +7,13 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { NavLink} from "react-router-dom";
+import readingMode from "../Imports/Info/ReadingMode";
+import themeColor from "../Imports/Info/ThemeColors";
+import {useSelector} from 'react-redux'; 
  
 export default function SimpleCard(props) {
+
+  const { darkThemeIndex, themeColorIndex } = useSelector((state) => state.rootReducer);
   
   function formatTags() {
 
@@ -26,14 +31,13 @@ export default function SimpleCard(props) {
       }
   
     });
-  
     return tagList;
   
   };
 
 
   return (
-    <Card key={props.id} className="m-4 md:mt-6 md:left-1/4 left-0 w-[calc(100%-2rem)] md:w-1/2 shadow-lg">
+    <Card key={props.id} className={readingMode[darkThemeIndex].color2 + readingMode[darkThemeIndex].text + "m-4 md:mt-6 md:left-1/4 left-0 w-[calc(100%-2rem)] md:w-1/2 shadow-lg"}>
       <CardBody>
         <Typography variant="h5" color="blue-gray" className="mb-2">
           {props.title}
@@ -51,7 +55,7 @@ export default function SimpleCard(props) {
       </CardBody>
       <CardFooter className="pt-0">
           <NavLink to={props.href} >
-          <button className="bg-slate-800 text-white hover:bg-green-500 rounded-lg shadow-md py-2 px-5">Read More</button>
+          <button className={themeColor[themeColorIndex].hover1 + " bg-slate-800 text-white rounded-lg shadow-md py-2 px-5"}>Read More</button>
           </NavLink>
         
       </CardFooter>

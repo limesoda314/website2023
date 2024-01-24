@@ -5,12 +5,13 @@ import remarkParseFrontmatter from 'remark-parse-frontmatter';
 import { Typography } from "@material-tailwind/react";
 import BlogLinks from "../Imports/Info/BlogLinks"; // Import an array of Markdown file paths here
 import tagList from "../Imports/Info/TagInfo"; 
-// import themeColors from '../Imports/Info/ThemeColors'; 
 
 import SortingBar from '../Imports/Blog/sortingBar';
 import FormatTags from '../Imports/Blog/formatTags';
 import FormatPosts from '../Imports/Blog/formatPosts';
-
+import readingMode from "../Imports/Info/ReadingMode";
+import themeColor from '../Imports/Info/ThemeColors';
+import {useSelector} from 'react-redux'; 
 
 function Blog() {
     // State variables
@@ -21,6 +22,7 @@ function Blog() {
     const [showMore, setShowMore] = useState([0, "Show More"]);
     const [showOptions, setShowOptions] = useState(0);
     const [sortedBy, setSortedBy] = useState(-1);
+    const { darkThemeIndex, themeColorIndex } = useSelector((state) => state.rootReducer);
 
     useEffect(() => {
         const fetchAndProcessMarkdown = async () => {
@@ -55,18 +57,17 @@ function Blog() {
 
     document.title = "Ann's Blog";
     return (
-        <div className="flex flex-col ">
+        <div className="flex flex-col">
 
-            <div className="m-8 h-full shadow-lg">
-                <Typography variant="h5" color="blue-gray">
+            <div className={"m-8 h-full shadow-lg p-8" + readingMode[darkThemeIndex].color2 + readingMode[darkThemeIndex].text}>
+                <Typography variant="h5">
                     Ann's Blog
                 </Typography>
                 <Typography variant="paragraph" className="m-8 text-left">
                     Hello and welcome to my blog where I talk about things that I'm interested in. 
-
                 </Typography>
-                <Typography className="text-left">
-                    <button className="bg-cyan-300 p-2 rounded-lg" 
+                <Typography className="text-left px-8">
+                    <button className={themeColor[themeColorIndex].hover1 + " " + themeColor[themeColorIndex].color2 + " p-2 rounded-lg text-white" } 
                     onClick={  () => { (showMore[0] === 0) ? setShowMore([1, "Show Less"]) : setShowMore([0, "Show More"])} } 
                     >{showMore[1]}</button> 
 
@@ -101,8 +102,8 @@ function Blog() {
                     }
                 </Typography>
             </div>
-            <Typography className="relative w-full h-min sticky z-10 inset-x-0 top-0 bg-gray-600">
-                    <div className="flex justify-end pt-10">
+            <Typography className={" relative w-full h-min sticky z-10 inset-x-0 top-0 " + themeColor[themeColorIndex].color1 + " text-white"}>
+                    <div className=" flex justify-end pt-10 ">
                         <SortingBar showOptions={showOptions} setShowOptions={setShowOptions} sortedBy={sortedBy} setSortedBy={setSortedBy} BlogArray={BlogArray} setBlogArray={setBlogArray} reformat={reformat} setReformat={setReformat}/>
                     </div>
                     <Typography className="justify-center text-white">
@@ -110,8 +111,8 @@ function Blog() {
                     </Typography>
             </Typography>
             
-            <Typography className="flex flex-col flex-wrap h-full text-left">
-                <FormatPosts BlogArray={BlogArray} tagMap={tagMap} greenTag={greenTag} reformat={reformat} setReformat={setReformat} />
+            <Typography className="flex flex-col flex-wrap h-full text-left ">
+                <FormatPosts BlogArray={BlogArray} tagMap={tagMap} greenTag={greenTag} reformat={reformat} setReformat={setReformat} className="bg-red-100" />
             </Typography> 
 
             
