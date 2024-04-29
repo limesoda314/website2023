@@ -2,7 +2,7 @@ const ReadingMode = [
     { 
         id: 0, 
         name: "light",
-        color1: " bg-grey-100",
+        color1: " bg-grey-100 ",
         color2: " bg-grey-50 ",
         text: " text-grey-950 ",
     },

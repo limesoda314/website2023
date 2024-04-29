@@ -1,5 +1,3 @@
-// lorim ipsum text taken from: https://www.lipsum.com/
-
 import minecraftBambooFarm from "../../posts/minecraft/bamboo-farm.mdx"; 
 import codingQuestions from "../../posts/programming/Coding-Questions.mdx"; 
 import twoSum from "../../posts/programming/Prompts/TwoSum.mdx";

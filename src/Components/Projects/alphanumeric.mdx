@@ -1,10 +1,26 @@
 ---
 href: alphanumeric-handwriting-detector
-title: alphanumeric project 
+title: Alphanumeric project (Spring 2023) 
 date: 2023-09-03
-author: Ann Miyaguchi, Ivan Netor
+author: Ann Miyaguchi, Ivan Neto
 description: predicts what letter or number the user uploaded/writes  
 ---
-## Alphanumeric project
 
-some text lalalalala
+Github link: https://github.com/limesoda314/CS180-Project
+
+For the UCR course CS180 Introduction to Software Engineering, I partnered up with Ivan Neto to create a website that took user input (writing on a react canvas component or a file upload) and displayed the prediction of what letter or number it was.
+
+
+For this project we used a react frontend with materialUI and a django backend. We trained our machine learning model using the emnist-bymerge split from the EMNIST data. This data set has 814,255 characters and 47 classes.
+You can find more information about the EMNIST dataset here: https://www.nist.gov/itl/products-and-services/emnist-dataset
+
+### The machine learning model
+
+We used the python library keras to create and save our model. Since we want to accurately categorize images, we used a convolutional neural network. Keras allows you to save pretrained models to a folder, so we load this model so that we don't have to train the model every time we get new input. 
+
+
+### The client
+
+We wanted users to be able to both upload an image as well as to be able to write their input on the website. When users upload their images or write the number or letter, a list of the top predictions are displayed on the side.
+Users draw the character displayed above the canvas. There are three options that they can do besides drawing the character while in the draw mode: undo, clear, and next.
+

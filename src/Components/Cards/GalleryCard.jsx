@@ -15,7 +15,7 @@ export default function ImgWithBlurredCaption(props) {
           <Typography variant="h5" color="blue-gray">
             {props.title}
           </Typography>
-          <Typography className=" mt-2 font-normal" color="gray" >
+          <Typography className="mt-2 font-normal" color="gray" >
             {props.date}
           </Typography>
         </div>
