@@ -1,0 +1,119 @@
+---
+href: my-website
+title: How I set up my website
+date: 2024-07-26
+author: Ann Miyaguchi 
+description: My personal website now vs before
+tags: 
+    - website
+---
+
+I have worked on improving my website since 2020 and have rewritten it 3 times. My first website used html, css, and a limited amount of javascript.
+When I first started I had limited experience with html and css. I didn't even know what I wanted it to look like. I just wanted to be able to say "I made this".
+I was determined to not use google site, wordpress, or any existing templates. However since I barely even knew how to code at that time, I started off with tutorials. 
+
+It took me a while to get familar with basic terms associated with a website. I spent considerable time understanding concepts like the difference between IDs and classes, padding and margin, and the distinctions between flexbox and grid.
+It was shocking how much time I spent just to add a "small" feature. It took me a full day to figure out how to create a menu bar that was both functional and aesthetic looking. 
+Figuring out how to keep the menu bar in the same spot no matter how far you scrolled was even harder. 
+
+During my first year of university I attended an online workshop hosted by my ACM chapter on how to create your first website. It was one of my first introductions to using git on the commandline
+and to github pages. With github pages, my website was no longer only available on my localhost; it was finally online! Soon after I figured out how to use netlify to host other 
+websites and I bought a domain name which I still use right now: annmiyaguchi.com.
+
+My original website was a collection of multiple tutorials and code snippets, still hosted on my github pages. At some point I decided to remake my website to look cleaner and relied less on tutorial code.
+I consider this one my first genuine personal website and I kept it for the remainder of university. I incorporated css techniques that I had learned and created a simple blog. Although I wanted aa website where I 
+could write posts in markdown, I couldn't figure out how to get the markdown to convert to html automatically. Neither could I figure out how to get posts to appear under specific tags. Instead I manually added the tags to each post and tag.
+
+In this website I successfully succeeded in implementing some of these features, although perhaps not in the most efficient or optimal way possible. 
+While the website remains static, it meets my needs perfectly and continues to serve its purpose effectively. :D 
+
+
+
+### This website
+
+This website uses react with nodejs and tailwindcss.
+
+Nodejs is a javascript runtime environment used to bui8ld applications on the server side. React is a javascript library used to build the the client-side application or the actual website. 
+Tailwindcss is a css framework that works with React and other similar applications. Tailwind css is helpful in that it has predefined classes and colors that help in styling elements in your website. 
+
+In my readme I have the following specifics on what I want my current website to accomplish. Some of these goals have yet to be accomplished, however the majority are already complete!  
+
+## Personal Website 2023 
+
+Problem: I have an existing website made in html, CSS, and Javascript that I made in my first year of uni, however it still says I'm a first year CS major. 
+
+Solution: Make a new and improved website in React instead of just modifying the old one :D 
+
+### Design Plan 
+
+Goal: I want a website where I can link personal projects, accomplishments, and my very own blog! 
+
+### Main Overview: 
+
+- [x] Home Page: This should include a short blurb about who I am, what I do, and how to find out more about how awesome I am 
+- [ ] Projects: This should include a list of projects I completed, short description, links to it (github or website), and perhaps even a gallery of my best works :O 
+- [x] Blog: This should include a way to sort my posts by date, title, but not by author (since I'll be the only one writing it). When you're first brought to the blog you should see a picture of my cat-- I mean a list of my most recent posts
+- [x] Gallery (Optional... maybe): This should display my top 10 photos of my cats :p 
+
+### Features to implement (in order of importance): 
+- [x] navbar: You should be able to quickly navigate to one of the main pages (home, projects, blog, gallery)
+- [ ] footer: You should be able to scroll to the bottom of the page and see my lovely logo of my username as well as some links to important socials... well as much as I have 
+- [x] hero: This should include the title of the page as well as a nice photo or color background 
+- [ ] sidebar: You should be able to see a picture of at least one of my cats at all times-- I mean a way to portion out what content users see 
+- [ ] favicon, logo, and the like: you shouldn't see too many default blanks
+- [x] theme changer: You should be able to quickly change between dark and light theme... or maybe a way to just change the color palatte? Hmm maybe I'll add in a few special themes if time allows 
+- [ ] surprise me: you should be able to click a button and it'll bring you to a random page
+- [x] code blocks: You should be able to see nicely formatted code blocks, previewing the code in a sandbox would be nice but just synatx highlighting and a copy feature would be okay. I could never quite figure this out before... but now that it's summer I will finally figure this out!
+
+
+I followed a few tutorials to complete the following
+* [for routing](https://dev.to/rebeccapeltz/react-18-react-router-v6-sidebar-navigation-and-a-sandpack-component-5c02)
+* [sandpack](https://sandpack.codesandbox.io/docs/advanced-usage/components)
+* [Remark to Html](https://blog.logrocket.com/how-to-safely-render-markdown-using-react-markdown/)
+
+
+#### Routing 
+To enable multiple pages on my website, I react-router-dom to create routes to the pages I want. 
+This allows the user to not have to refresh the page in order to navigate to a new page and they can also 
+access specific URL's directly.
+
+I place the pages I want to route to in a folder called Pages under Components. 
+The Pages folder contains the following jsx files: 
+
+* home.jsx: Contains a brief introduction about myself.
+* gallery.jsx: Displays a collection of cute cat pictures.
+* layout.jsx: Provides a consistent layout with a sidebar, header, and footer used on every page.
+* nopage.jsx: Displays a 404 error message for non-existent links.
+* blog.jsx and projects.jsx: Feature "cards" with excerpts from blog posts and project descriptions, respectively.
+
+
+#### Imports 
+While there are methods to automate the generation of posts/projects lists, I manually update this information. 
+I store details for blog posts in Imports/Info/BlogLinks.js, which helps in organizing and reusing frequently needed information.
+
+The Imports directory contains components or JavaScript objects used in main components, particularly for the blog and project pages.
+
+#### Blog and Projects
+My blog page requires quite a few components in order to be populated with my blog posts. 
+I store the information of my blog posts in an array of javascript objects that I import from Imports/Info/BlogLinks.jsx. 
+In this way I can iterate through all of the markdown files that I include and fetch their content. 
+
+Each markdown file includes a YAML frontmatter that I use for metadata such as tags, the title, author, date, tags, description, href, and id. 
+I parse this frontmatter to use to populate post cards. One of the things I found to make this process more streamlined is to use a map instead of a traditional for loop. 
+
+After figuring out how to populate my blog page with post cards, I decided to implement a sorting method. This way posts can be organized by tags, date, and name. 
+Since I am the only author, there isn't really a need to implement sorting by author name xD 
+I created a component called sortingBar which uses 4 different comparision functions. 
+* TitlesA-Z: sort posts by titles in alphabetical order
+* TitlesZ-A: sort posts by titles in reverse alphabetical order
+* Date Newest: sort posts by date written, newest first 
+* Date Oldest: sort posts by date written, oldest first
+My sortingbar component recieves the frontmatter and sorts the cards accordingly. 
+There are more props that I use but they are more for aesthetic functionality (such as changing tag colors based on their selection status).
+
+
+When viewing an individual blog post, I use react-markdown to parse the markdown along with a few plugins for latex and codeblocks. 
+As described in the [react-markdown github](https://github.com/remarkjs/react-markdown), "react-markdown builds a virtual DOM, so React only replaces what changed, from a syntax tree". 
+I use the frontmatter to populate things such as the header, date, tags, etc and I style the content with Tailwind CSS.
+
+My projects page functions similarlly to the blog page except that it does not include any sorting/categorizing method. 
