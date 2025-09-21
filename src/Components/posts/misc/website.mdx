@@ -33,7 +33,7 @@ While the website remains static, it meets my needs perfectly and continues to s
 
 This website uses react with nodejs and tailwindcss.
 
-Nodejs is a javascript runtime environment used to bui8ld applications on the server side. React is a javascript library used to build the the client-side application or the actual website. 
+Nodejs is a javascript runtime environment used to build applications on the server side. React is a javascript library used to build the the client-side application or the actual website. 
 Tailwindcss is a css framework that works with React and other similar applications. Tailwind css is helpful in that it has predefined classes and colors that help in styling elements in your website. 
 
 In my readme I have the following specifics on what I want my current website to accomplish. Some of these goals have yet to be accomplished, however the majority are already complete!  
@@ -73,14 +73,14 @@ I followed a few tutorials to complete the following
 
 
 #### Routing 
-To enable multiple pages on my website, I react-router-dom to create routes to the pages I want. 
+To enable multiple pages on my website, I use react-router-dom to create routes to the pages I want. 
 This allows the user to not have to refresh the page in order to navigate to a new page and they can also 
 access specific URL's directly.
 
 I place the pages I want to route to in a folder called Pages under Components. 
 The Pages folder contains the following jsx files: 
 
-* home.jsx: Contains a brief introduction about myself.
+* home.jsx: Should include recommendations to posts
 * gallery.jsx: Displays a collection of cute cat pictures.
 * layout.jsx: Provides a consistent layout with a sidebar, header, and footer used on every page.
 * nopage.jsx: Displays a 404 error message for non-existent links.
@@ -102,12 +102,14 @@ Each markdown file includes a YAML frontmatter that I use for metadata such as t
 I parse this frontmatter to use to populate post cards. One of the things I found to make this process more streamlined is to use a map instead of a traditional for loop. 
 
 After figuring out how to populate my blog page with post cards, I decided to implement a sorting method. This way posts can be organized by tags, date, and name. 
-Since I am the only author, there isn't really a need to implement sorting by author name xD 
+Since I am the only author, there isn't really a need to implement sorting by author name.
+
 I created a component called sortingBar which uses 4 different comparision functions. 
 * TitlesA-Z: sort posts by titles in alphabetical order
 * TitlesZ-A: sort posts by titles in reverse alphabetical order
 * Date Newest: sort posts by date written, newest first 
 * Date Oldest: sort posts by date written, oldest first
+
 My sortingbar component recieves the frontmatter and sorts the cards accordingly. 
 There are more props that I use but they are more for aesthetic functionality (such as changing tag colors based on their selection status).
 

@@ -1,5 +1,3 @@
-import img1 from './../../images/img1.jpg'; 
-import img2 from './../../images/img2.jpg'; 
 import img3 from './../../images/img3.jpg'; 
 import img4 from './../../images/img4.jpg'; 
 import img5 from './../../images/img5.jpg'; 
@@ -12,22 +10,6 @@ import img11 from './../../images/img11.jpg';
 
 
 const images = [
-    {
-        id: 0,
-        href: img1, 
-        alt: 'orange tabby cat',
-        date: '7-30-2023',
-        title: 'Mango',
-        description: 'Mango close up',
-    },
-    {
-        id: 1,
-        href: img2,
-        alt: 'orange tabby cat',
-        date: '7-30-2023',
-        title: 'Mango',
-        description: "Mango's face",
-    },
     {
         id: 2,
         href: img3,

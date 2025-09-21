@@ -12,7 +12,7 @@ function Home() {
                     Home
                 </Typography>
                 <Typography variant="paragraph" className="m-8">
-                    Hello! I'm Ann, I just graduated with my bachelor's spring 2024. I plan to improve this website soon! 
+                    Hello! I'm Ann. Welcome to my website! 
                 </Typography>
                 
             </div>

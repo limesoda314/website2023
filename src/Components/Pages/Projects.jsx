@@ -55,7 +55,7 @@ export default function Projects() {
                 Projects
             </Typography>
             <Typography className="m-8">
-            Below are a few of the projects that I've completed :) 
+            Below are a few of the projects that I'm working on 
             </Typography>
             </div>
             
